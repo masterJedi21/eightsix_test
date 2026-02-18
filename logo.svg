@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 40" fill="none">
+  <!-- Shield / hex icon -->
+  <path d="M18 4 L30 10 L30 22 C30 28 24 34 18 36 C12 34 6 28 6 22 L6 10 Z" fill="#1f3a89"/>
+  <path d="M18 10 L24 13 L24 21 C24 25 21 28.5 18 30 C15 28.5 12 25 12 21 L12 13 Z" fill="#F4C430" opacity="0.9"/>
+  <text x="14" y="23" font-family="monospace" font-size="8" font-weight="bold" fill="#0B1220" text-anchor="middle">86</text>
+  <!-- Brand name text -->
+  <text x="40" y="18" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.5">EIGHT SIX</text>
+  <text x="40" y="32" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="500" fill="#94a3b8" letter-spacing="2">IT ENGINEERING</text>
+</svg>
