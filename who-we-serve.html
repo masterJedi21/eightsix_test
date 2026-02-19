@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Who We Serve | Eight Six IT Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1f3a89",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#0B1220",
+                    "accent-red": "#D62828",
+                    "accent-yellow": "#F4C430",
+                    "card-dark": "#151f3d",
+                },
+                fontFamily: { "display": ["Space Grotesk", "sans-serif"] },
+                borderRadius: {
+                    "DEFAULT": "0.25rem", "lg": "0.5rem",
+                    "xl": "0.75rem", "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    :root { --panel-line:0.12; --panel-shadow:0.07; --panel-decal:0.05; }
+    .armor-surface {
+        position:absolute; inset:0; pointer-events:none;
+        background-repeat:repeat; background-size:1600px 900px; background-position:0 0;
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='none'/%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%23E5E7EB' stroke-opacity='0.12' stroke-width='1.2'%3E%3Cpath d='M40 70 H420 L470 120 V260 L420 310 H70 L40 280 Z'/%3E%3Cpath d='M520 40 H970 L1025 90 V235 L980 280 H560 L520 240 Z'/%3E%3Cpath d='M1120 55 H1540 V240 H1285 L1215 310 H1120 Z'/%3E%3Cpath d='M80 390 H520 L600 470 V700 H280 L80 520 Z'/%3E%3Cpath d='M640 360 H1020 L1100 440 V520 L1045 575 H700 L640 520 Z'/%3E%3Cpath d='M1160 360 H1540 V650 H1280 L1205 725 H1160 Z'/%3E%3Cpath d='M620 610 H1120 V820 H680 L620 760 Z'/%3E%3Cpath d='M40 740 H520 V860 H150 L40 780 Z'/%3E%3Cpath d='M1180 700 H1540 V860 H1320 L1180 820 Z'/%3E%3C/g%3E%3Cg stroke='%23000000' stroke-opacity='0.07' stroke-width='1.2'%3E%3Cpath d='M41 71 H421 L471 121 V261 L421 311 H71 L41 281 Z'/%3E%3Cpath d='M521 41 H971 L1026 91 V236 L981 281 H561 L521 241 Z'/%3E%3Cpath d='M1121 56 H1541 V241 H1286 L1216 311 H1121 Z'/%3E%3Cpath d='M81 391 H521 L601 471 V701 H281 L81 521 Z'/%3E%3Cpath d='M641 361 H1021 L1101 441 V521 L1046 576 H701 L641 521 Z'/%3E%3Cpath d='M1161 361 H1541 V651 H1281 L1206 726 H1161 Z'/%3E%3Cpath d='M621 611 H1121 V821 H681 L621 761 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .armor-markings {
+        position:absolute; inset:0; pointer-events:none;
+        background-repeat:repeat; background-size:1600px 900px; background-position:0 0;
+        opacity:var(--panel-decal);
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Cg fill='%23E5E7EB' font-family='monospace' font-size='10' font-weight='bold'%3E%3Ctext x='50' y='65'%3EE86-01%3C/text%3E%3Ctext x='530' y='35'%3ERX-78-2%3C/text%3E%3Ctext x='1130' y='50'%3ECAUTION%3C/text%3E%3Ctext x='90' y='405'%3EPANEL A7%3C/text%3E%3Ctext x='650' y='375'%3ESERVICE PORT%3C/text%3E%3Ctext x='1170' y='375'%3ECORE UNIT%3C/text%3E%3Ctext x='630' y='625'%3EDO NOT REMOVE%3C/text%3E%3Ctext x='50' y='735'%3EACCESS HATCH%3C/text%3E%3Ctext x='1190' y='715'%3ESYSTEM CHECK%3C/text%3E%3Cpath d='M40 70 l10 0 M40 70 l0 10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M1540 55 l-10 0 M1540 55 l0 10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M40 860 l10 0 M40 860 l0 -10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M1540 860 l-10 0 M1540 860 l0 -10' stroke='%23E5E7EB' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .glass-panel { background:rgba(21,31,61,0.6); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.05); }
+</style>
+</head>
+<body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-3">
+            <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain h-10" src="logo.svg"/></a>
+        </div>
+        <nav class="hidden items-center gap-8 lg:flex">
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="services.html">Services</a>
+            <a class="text-sm font-medium text-primary border-b border-primary pb-0.5" href="who-we-serve.html">Who We Serve</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="about.html">About</a>
+            <div class="h-4 w-px bg-white/10"></div>
+            <button class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white">
+                <span class="material-symbols-outlined text-sm">language</span>
+                Español
+            </button>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</button>
+            <a href="assessment.html" class="rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Get Assessment</a>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-24 pb-16 lg:pt-36 lg:pb-24" style="background:radial-gradient(circle at 50% 0%, rgba(31,58,137,0.25) 0%, rgba(11,18,32,1) 100%);">
+        <div class="armor-overlay-wrapper absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div class="armor-surface absolute inset-0 opacity-75"></div>
+            <div class="armor-markings absolute inset-0"></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 relative z-10">
+            <div class="mb-8 flex items-center gap-2 text-xs text-slate-500">
+                <a href="index.html" class="hover:text-slate-300 transition-colors">Home</a>
+                <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+                <span class="text-slate-300">Who We Serve</span>
+            </div>
+            <div class="max-w-3xl">
+                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+                    <span class="material-symbols-outlined text-sm">hub</span>
+                    Specialized Industry Expertise
+                </div>
+                <h1 class="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+                    Built for the Industries Where <span class="text-primary">IT Cannot Fail</span>
+                </h1>
+                <p class="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed">
+                    We don't serve everyone — and that's intentional. Our expertise runs deep inside the sectors where downtime means more than lost revenue. If your IT environment has zero tolerance for failure, you're exactly who we built this for.
+                </p>
+            </div>
+            <!-- Sector quick-jump pills -->
+            <div class="mt-10 flex flex-wrap gap-3">
+                <a href="#medical" class="rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-semibold text-primary hover:bg-primary/20 transition-colors">Medical Practices</a>
+                <a href="#radiology" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-300 hover:border-primary/30 hover:text-primary transition-colors">Radiology Centers</a>
+                <a href="#professional" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-300 hover:border-primary/30 hover:text-primary transition-colors">Professional Offices</a>
+                <a href="#multisite" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-300 hover:border-primary/30 hover:text-primary transition-colors">Multi-Site Clinics</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sector 1: Medical Practices -->
+    <section id="medical" class="py-24 bg-background-dark scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-16 lg:grid-cols-2 items-start">
+                <div>
+                    <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
+                        <span class="material-symbols-outlined text-sm">medical_services</span>
+                        Sector 01
+                    </div>
+                    <h2 class="text-3xl font-bold text-white md:text-4xl">Medical Practices</h2>
+                    <p class="mt-5 text-slate-400 leading-relaxed">
+                        Private clinics, group practices, and specialty offices operate in one of the most regulated IT environments in any industry. A HIPAA violation, an EMR outage, or a ransomware attack doesn't just cost money — it disrupts patient care.
+                    </p>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        We've worked inside clinical environments long enough to understand the workflows, the compliance obligations, and the after-hours urgency that comes with keeping a practice running. Our engineers don't need a tour.
+                    </p>
+
+                    <!-- Pain points -->
+                    <div class="mt-10">
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Common Challenges We Solve</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">EMR connectivity and performance issues</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Slow eClinicalWorks, Epic, or Athenahealth logins that frustrate providers and delay appointments.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">HIPAA audit exposure</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Missing risk assessments, unsecured devices, or undocumented access controls that create regulatory liability.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Ransomware with no recovery plan</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Backups that exist on paper but have never been tested — discovered only when it's too late.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What we deliver -->
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">What We Deliver</p>
+                    <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                            <span class="material-symbols-outlined">health_and_safety</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Full HIPAA Technical Safeguards</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Annual risk assessments, encryption of PHI at rest and in transit, audit logging, automatic screen locks, and documentation ready for OCR review.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">medical_information</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">EMR / EHR Integration & Support</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Dedicated support for eClinicalWorks, Epic, Athenahealth, and others — including interface troubleshooting, server optimization, and HL7 feed management.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">backup</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Immutable Backup with Tested Recovery</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Air-gapped backups of your clinical data with monthly automated recovery tests. You'll never wonder if your backup works — we prove it monthly.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">headset_mic</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">After-Hours & Weekend Support</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Practices don't always go down during business hours. Our 24/7 coverage means a real engineer answers at 6am Saturday before your first patient.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6"><div class="h-px bg-white/5"></div></div>
+
+    <!-- Sector 2: Radiology Centers -->
+    <section id="radiology" class="py-24 bg-background-dark scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-16 lg:grid-cols-2 items-start">
+                <div>
+                    <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
+                        <span class="material-symbols-outlined text-sm">radiology</span>
+                        Sector 02
+                    </div>
+                    <h2 class="text-3xl font-bold text-white md:text-4xl">Radiology Centers</h2>
+                    <p class="mt-5 text-slate-400 leading-relaxed">
+                        Radiology is one of the most IT-intensive clinical environments that exists. A single MRI study can exceed 1GB. A full day's volume can overwhelm infrastructure that wasn't designed for it — slowing reads, delaying diagnoses, and frustrating radiologists.
+                    </p>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        We engineer networks and storage architectures specifically for DICOM imaging workloads — with the throughput, redundancy, and PACS integration your facility demands.
+                    </p>
+                    <div class="mt-10">
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Common Challenges We Solve</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Slow image load times</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Bottlenecked networks that make radiologists wait seconds — or minutes — per series, destroying read throughput.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Storage capacity running out</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Unplanned storage growth from DICOM archives with no tiering strategy — leading to emergency purchases and scramble migrations.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">PACS downtime during upgrades</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Vendor-driven upgrades that take the PACS offline during clinical hours, halting reads and creating backlogs.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">What We Deliver</p>
+                    <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                            <span class="material-symbols-outlined">network_check</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">High-Throughput Imaging Network Design</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">10GbE backbone with dedicated DICOM VLANs, QoS policies, and low-latency switching — engineered to eliminate image load bottlenecks.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">storage</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Scalable DICOM Archive &amp; Tiering</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Hot/warm/cold storage tiering that keeps recent studies fast and moves aged archives to cost-efficient storage — automatically, without manual intervention.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">display_settings</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">PACS Server Management &amp; Support</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Ongoing PACS server administration, upgrade coordination, and radiologist workstation optimization — including display calibration support.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">lock</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">HIPAA-Compliant Image Security</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Encrypted DICOM transmission, access-controlled image repositories, and complete audit trails for all PHI-containing imaging data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6"><div class="h-px bg-white/5"></div></div>
+
+    <!-- Sector 3: Professional Offices -->
+    <section id="professional" class="py-24 bg-[#080d16] scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-16 lg:grid-cols-2 items-start">
+                <div>
+                    <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
+                        <span class="material-symbols-outlined text-sm">work</span>
+                        Sector 03
+                    </div>
+                    <h2 class="text-3xl font-bold text-white md:text-4xl">Professional Offices</h2>
+                    <p class="mt-5 text-slate-400 leading-relaxed">
+                        Law firms, accounting practices, and financial services organizations hold some of the most sensitive data in existence — client financial records, privileged communications, and confidential case files. A breach isn't just costly, it can end a firm.
+                    </p>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        We bring the same rigor we apply to healthcare IT to professional services environments — enterprise-grade security and productivity tools scaled to offices of any size.
+                    </p>
+                    <div class="mt-10">
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Common Challenges We Solve</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Business email compromise (BEC)</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Spoofed partner emails that trick staff into wire transfers or disclosure of sensitive client information.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Unsecured remote work environments</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Staff accessing confidential files from personal devices or unmanaged home networks without VPN or MFA.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">No technology strategy or roadmap</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">IT decisions made reactively — replacing hardware only when it breaks, with no budget planning or lifecycle management.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">What We Deliver</p>
+                    <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                            <span class="material-symbols-outlined">shield</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Enterprise Security for SMB Budgets</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">EDR, advanced email filtering, and MFA enforcement — the same security stack as large enterprises, right-sized for a 10–50 person firm.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">work_history</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Microsoft 365 &amp; Productivity Management</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Full Microsoft 365 administration — licensing, Exchange configuration, SharePoint, Teams, and compliance policy enforcement.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">home_work</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Secure Remote Work Infrastructure</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Zero-trust remote access, managed VPN, and MDM for firm-owned and BYOD devices — so work-from-anywhere doesn't mean risk-from-anywhere.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">groups</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">vCIO Technology Strategy</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Quarterly technology reviews, hardware lifecycle planning, and budget forecasting — strategic IT leadership without a full-time hire.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="mx-auto max-w-7xl px-6"><div class="h-px bg-white/5"></div></div>
+
+    <!-- Sector 4: Multi-Site Clinics -->
+    <section id="multisite" class="py-24 bg-[#080d16] scroll-mt-20">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-16 lg:grid-cols-2 items-start">
+                <div>
+                    <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
+                        <span class="material-symbols-outlined text-sm">hub</span>
+                        Sector 04
+                    </div>
+                    <h2 class="text-3xl font-bold text-white md:text-4xl">Multi-Site Clinics &amp; Health Systems</h2>
+                    <p class="mt-5 text-slate-400 leading-relaxed">
+                        Managing IT across multiple locations means managing multiple attack surfaces, multiple network configurations, and multiple points of failure — simultaneously. Most MSPs treat each site as a separate client. We treat your entire organization as a single, unified system.
+                    </p>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        Our SD-WAN expertise and centralized management platform give you consistent performance, visibility, and security policy enforcement across every location from a single pane of glass.
+                    </p>
+                    <div class="mt-10">
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Common Challenges We Solve</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Inconsistent security across locations</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">One well-secured site and three that became the breach entry point — because policy wasn't enforced uniformly.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Unreliable inter-site connectivity</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Branch offices unable to reach the EMR or shared clinical applications, with no failover when the primary link goes down.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">No centralized visibility</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">IT teams flying blind across locations — no unified monitoring, inconsistent patching, and manual asset management.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">What We Deliver</p>
+                    <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                            <span class="material-symbols-outlined">lan</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">SD-WAN Multi-Site Connectivity</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Intelligent WAN fabric with automatic failover across ISP links, QoS for clinical traffic, and centralized policy management — so every site performs like your main location.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">policy</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Unified Security Policy Management</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">One security policy applied consistently across all sites — same firewall rules, same patch cadence, same EDR configuration. No location is the weak link.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">dashboard</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">Centralized Monitoring &amp; Alerting</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Full visibility across all locations from a single dashboard — uptime, performance, security alerts, and compliance posture, all in one view.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined">add_location</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white text-sm">New Location Onboarding</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Standardized deployment playbook for new clinic openings — from structured cabling to day-one production-ready systems, on schedule.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Not sure where you fit? -->
+    <section class="py-16 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="glass-panel rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Don't see your exact industry listed?</h3>
+                    <p class="mt-2 text-sm text-slate-400 max-w-xl">If your environment handles sensitive data, has compliance obligations, or simply can't afford downtime, we should talk. Our assessment is free and there's no pressure to buy anything.</p>
+                </div>
+                <a href="assessment.html" class="shrink-0 rounded-lg bg-primary px-8 py-4 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90 uppercase tracking-wider whitespace-nowrap">
+                    Book Free Assessment
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24">
+        <div class="mx-auto max-w-5xl px-6">
+            <div class="rounded-2xl bg-primary p-12 text-center text-white shadow-2xl relative overflow-hidden">
+                <div class="armor-overlay-wrapper absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <div class="armor-surface absolute inset-0 opacity-75"></div>
+                    <div class="armor-markings absolute inset-0"></div>
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold md:text-4xl">Your Industry. Our Specialty.</h2>
+                    <p class="mt-6 text-lg opacity-90 max-w-xl mx-auto">Let's talk about what your specific environment needs. Free assessment, real engineer, zero pressure.</p>
+                    <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+                        <a href="assessment.html" class="rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">
+                            Get Your Free Assessment
+                        </a>
+                        <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17875552233">
+                            <span class="material-symbols-outlined">call</span>
+                            (787) 555-2233
+                        </a>
+                    </div>
+                    <p class="mt-8 text-xs font-medium text-white/50 tracking-wide uppercase italic">No obligation. No pressure. Just clarity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 bg-background-dark py-12 text-slate-400">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid gap-12 lg:grid-cols-4">
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain opacity-90 h-10" src="logo.svg"/></a>
+                </div>
+                <p class="max-w-sm text-sm leading-relaxed">Dedicated to providing healthcare-grade IT infrastructure and cybersecurity solutions across Puerto Rico. Engineering reliability since 2010.</p>
+                <div class="mt-8"><button class="text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-white">Se Habla Español</button></div>
+            </div>
+            <div>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Quick Links</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="services.html">Managed Services</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="cybersecurity.html">Cybersecurity Audit</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="cybersecurity.html">HIPAA Compliance</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="assessment.html">Contact Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h4>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">location_on</span><span>San Juan, Puerto Rico</span></li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">phone</span><span>(787) 555-2233</span></li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">mail</span><span>info@eightsix.co</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-16 border-t border-white/5 pt-8 text-center text-xs">
+            <p>&copy; 2024 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

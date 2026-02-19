@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IT Services | Eight Six IT Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1f3a89",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#0B1220",
+                    "accent-red": "#D62828",
+                    "accent-yellow": "#F4C430",
+                    "card-dark": "#151f3d",
+                },
+                fontFamily: { "display": ["Space Grotesk", "sans-serif"] },
+                borderRadius: {
+                    "DEFAULT": "0.25rem", "lg": "0.5rem",
+                    "xl": "0.75rem", "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    :root { --panel-line:0.12; --panel-shadow:0.07; --panel-decal:0.05; }
+    .armor-surface {
+        position:absolute; inset:0; pointer-events:none;
+        background-repeat:repeat; background-size:1600px 900px; background-position:0 0;
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='none'/%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%23E5E7EB' stroke-opacity='0.12' stroke-width='1.2'%3E%3Cpath d='M40 70 H420 L470 120 V260 L420 310 H70 L40 280 Z'/%3E%3Cpath d='M520 40 H970 L1025 90 V235 L980 280 H560 L520 240 Z'/%3E%3Cpath d='M1120 55 H1540 V240 H1285 L1215 310 H1120 Z'/%3E%3Cpath d='M80 390 H520 L600 470 V700 H280 L80 520 Z'/%3E%3Cpath d='M640 360 H1020 L1100 440 V520 L1045 575 H700 L640 520 Z'/%3E%3Cpath d='M1160 360 H1540 V650 H1280 L1205 725 H1160 Z'/%3E%3Cpath d='M620 610 H1120 V820 H680 L620 760 Z'/%3E%3Cpath d='M40 740 H520 V860 H150 L40 780 Z'/%3E%3Cpath d='M1180 700 H1540 V860 H1320 L1180 820 Z'/%3E%3C/g%3E%3Cg stroke='%23000000' stroke-opacity='0.07' stroke-width='1.2'%3E%3Cpath d='M41 71 H421 L471 121 V261 L421 311 H71 L41 281 Z'/%3E%3Cpath d='M521 41 H971 L1026 91 V236 L981 281 H561 L521 241 Z'/%3E%3Cpath d='M1121 56 H1541 V241 H1286 L1216 311 H1121 Z'/%3E%3Cpath d='M81 391 H521 L601 471 V701 H281 L81 521 Z'/%3E%3Cpath d='M641 361 H1021 L1101 441 V521 L1046 576 H701 L641 521 Z'/%3E%3Cpath d='M1161 361 H1541 V651 H1281 L1206 726 H1161 Z'/%3E%3Cpath d='M621 611 H1121 V821 H681 L621 761 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .armor-markings {
+        position:absolute; inset:0; pointer-events:none;
+        background-repeat:repeat; background-size:1600px 900px; background-position:0 0;
+        opacity:var(--panel-decal);
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Cg fill='%23E5E7EB' font-family='monospace' font-size='10' font-weight='bold'%3E%3Ctext x='50' y='65'%3EE86-01%3C/text%3E%3Ctext x='530' y='35'%3ERX-78-2%3C/text%3E%3Ctext x='1130' y='50'%3ECAUTION%3C/text%3E%3Ctext x='90' y='405'%3EPANEL A7%3C/text%3E%3Ctext x='650' y='375'%3ESERVICE PORT%3C/text%3E%3Ctext x='1170' y='375'%3ECORE UNIT%3C/text%3E%3Ctext x='630' y='625'%3EDO NOT REMOVE%3C/text%3E%3Ctext x='50' y='735'%3EACCESS HATCH%3C/text%3E%3Ctext x='1190' y='715'%3ESYSTEM CHECK%3C/text%3E%3Cpath d='M40 70 l10 0 M40 70 l0 10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M1540 55 l-10 0 M1540 55 l0 10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M40 860 l10 0 M40 860 l0 -10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M1540 860 l-10 0 M1540 860 l0 -10' stroke='%23E5E7EB' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .glass-panel { background:rgba(21,31,61,0.6); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.05); }
+</style>
+</head>
+<body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-3">
+            <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain h-10" src="logo.svg"/></a>
+        </div>
+        <nav class="hidden items-center gap-8 lg:flex">
+            <a class="text-sm font-medium text-primary border-b border-primary pb-0.5" href="services.html">Services</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="about.html">About</a>
+            <div class="h-4 w-px bg-white/10"></div>
+            <button class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white">
+                <span class="material-symbols-outlined text-sm">language</span>
+                Español
+            </button>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</button>
+            <a href="assessment.html" class="rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Get Assessment</a>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-24 pb-16 lg:pt-36 lg:pb-24" style="background:radial-gradient(circle at 50% 0%, rgba(31,58,137,0.25) 0%, rgba(11,18,32,1) 100%);">
+        <div class="armor-overlay-wrapper absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div class="armor-surface absolute inset-0 opacity-75"></div>
+            <div class="armor-markings absolute inset-0"></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 relative z-10">
+            <div class="mb-8 flex items-center gap-2 text-xs text-slate-500">
+                <a href="index.html" class="hover:text-slate-300 transition-colors">Home</a>
+                <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+                <span class="text-slate-300">Services</span>
+            </div>
+            <div class="max-w-3xl">
+                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+                    <span class="material-symbols-outlined text-sm">build</span>
+                    Outcome-Focused Engineering
+                </div>
+                <h1 class="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+                    IT That Works as Hard as <span class="text-primary">Your Practice Does</span>
+                </h1>
+                <p class="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed">
+                    From day-to-day helpdesk to enterprise-grade disaster recovery, every service we provide is engineered around one outcome: your operations never stop.
+                </p>
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <a href="assessment.html" class="flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-bold text-white shadow-[0_0_25px_rgba(31,58,138,0.4)] transition-all hover:bg-primary/90 uppercase tracking-wider">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                        Get a Free Assessment
+                    </a>
+                    <a href="tel:+17875552233" class="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-8 py-4 text-base font-bold text-white transition-all hover:bg-white/10">
+                        <span class="material-symbols-outlined">call</span>
+                        (787) 555-2233
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Services -->
+    <section class="py-24 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="mb-16 text-center">
+                <div class="mb-4 flex items-center justify-center gap-2 text-accent-yellow">
+                    <span class="h-px w-8 bg-accent-yellow"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Core Services</span>
+                    <span class="h-px w-8 bg-accent-yellow"></span>
+                </div>
+                <h2 class="text-3xl font-bold text-white md:text-4xl">Everything Your Infrastructure Needs</h2>
+                <p class="mt-4 text-slate-400 max-w-2xl mx-auto">Three pillars. Total coverage.</p>
+            </div>
+
+            <!-- Service 1: Managed IT -->
+            <div class="mb-8 rounded-2xl border border-white/5 bg-card-dark overflow-hidden">
+                <div class="grid lg:grid-cols-[1fr_1.4fr]">
+                    <div class="p-10 flex flex-col justify-between gap-8">
+                        <div>
+                            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                <span class="material-symbols-outlined text-3xl">computer</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Managed IT Services</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Your entire IT environment — proactively monitored, maintained, and supported by engineers who already know your systems. We eliminate problems before your staff ever feels them.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-primary/10 rounded-lg text-xs font-semibold text-primary">24/7 Support</span>
+                            <span class="px-3 py-1.5 bg-primary/10 rounded-lg text-xs font-semibold text-primary">On-Site</span>
+                            <span class="px-3 py-1.5 bg-primary/10 rounded-lg text-xs font-semibold text-primary">Remote</span>
+                            <span class="px-3 py-1.5 bg-primary/10 rounded-lg text-xs font-semibold text-primary">Proactive</span>
+                        </div>
+                        <a href="assessment.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
+                            Get started <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-white/5 lg:border-t-0 lg:border-l p-10 grid sm:grid-cols-2 gap-4 content-start">
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">support_agent</span>
+                            <p class="font-semibold text-white text-sm mb-1">Helpdesk & Remote Support</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Unlimited remote support tickets handled by certified engineers — average response under 15 minutes.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">engineering</span>
+                            <p class="font-semibold text-white text-sm mb-1">On-Site Field Engineering</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Scheduled and emergency on-site visits across Puerto Rico. Hardware repairs, installations, and hands-on troubleshooting.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">monitoring</span>
+                            <p class="font-semibold text-white text-sm mb-1">Proactive Monitoring (RMM)</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Every endpoint, server, and network device watched in real time. Issues are caught and resolved before they become outages.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">system_update</span>
+                            <p class="font-semibold text-white text-sm mb-1">Patch Management</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Automated OS and software patching across your fleet, scheduled to minimize disruption and eliminate vulnerability windows.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">devices</span>
+                            <p class="font-semibold text-white text-sm mb-1">Device Lifecycle Management</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Procurement, provisioning, asset tracking, and end-of-life replacement planning for all workstations and hardware.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">inventory_2</span>
+                            <p class="font-semibold text-white text-sm mb-1">IT Asset Inventory</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">A complete, up-to-date map of every device, software license, and config in your environment — always audit-ready.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2: Cybersecurity -->
+            <div class="mb-8 rounded-2xl border border-primary/25 bg-primary/5 overflow-hidden">
+                <div class="grid lg:grid-cols-[1fr_1.4fr]">
+                    <div class="p-10 flex flex-col justify-between gap-8">
+                        <div>
+                            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                                <span class="material-symbols-outlined text-3xl">shield</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Cybersecurity Defense</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Healthcare is the #1 ransomware target. We deploy a layered defense stack — EDR, SOC, email security, and zero-trust — so threats are stopped before they touch your data.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-primary/15 rounded-lg text-xs font-semibold text-primary">EDR/MDR</span>
+                            <span class="px-3 py-1.5 bg-primary/15 rounded-lg text-xs font-semibold text-primary">SOC 24/7</span>
+                            <span class="px-3 py-1.5 bg-primary/15 rounded-lg text-xs font-semibold text-primary">HIPAA</span>
+                            <span class="px-3 py-1.5 bg-primary/15 rounded-lg text-xs font-semibold text-primary">Zero-Trust</span>
+                        </div>
+                        <a href="cybersecurity.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
+                            View full details <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-white/5 lg:border-t-0 lg:border-l border-primary/15 p-10 grid sm:grid-cols-2 gap-4 content-start">
+                        <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">monitor_heart</span>
+                            <p class="font-semibold text-white text-sm mb-1">EDR / MDR</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">CrowdStrike-powered endpoint protection with 24/7 threat hunting and automated isolation.</p>
+                        </div>
+                        <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">radar</span>
+                            <p class="font-semibold text-white text-sm mb-1">SOC Monitoring</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Round-the-clock Security Operations Center with SIEM correlation and expert triage.</p>
+                        </div>
+                        <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">mail_lock</span>
+                            <p class="font-semibold text-white text-sm mb-1">Email Security</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">AI-powered filtering that blocks phishing, BEC, and malicious attachments before delivery.</p>
+                        </div>
+                        <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">health_and_safety</span>
+                            <p class="font-semibold text-white text-sm mb-1">HIPAA Security</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Risk assessments, technical safeguard implementation, and audit-ready documentation.</p>
+                        </div>
+                        <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">passkey</span>
+                            <p class="font-semibold text-white text-sm mb-1">Zero-Trust & MFA</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Identity-first architecture — no user or device trusted by default, with full MFA enforcement.</p>
+                        </div>
+                        <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-primary mb-2 block">manage_search</span>
+                            <p class="font-semibold text-white text-sm mb-1">Vulnerability Management</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Continuous scanning, CVSS-scored prioritization, and patch SLA enforcement across all assets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3: Backup & DR -->
+            <div class="mb-8 rounded-2xl border border-white/5 bg-card-dark overflow-hidden">
+                <div class="grid lg:grid-cols-[1fr_1.4fr]">
+                    <div class="p-10 flex flex-col justify-between gap-8">
+                        <div>
+                            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-yellow/10 text-accent-yellow">
+                                <span class="material-symbols-outlined text-3xl">backup</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Backup &amp; Disaster Recovery</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Ransomware-proof immutable backups with tested recovery procedures. When the worst happens, you're back online in minutes — not days — with zero data loss.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Immutable</span>
+                            <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Air-Gapped</span>
+                            <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Off-Site</span>
+                            <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Tested</span>
+                        </div>
+                        <a href="assessment.html" class="inline-flex items-center gap-2 text-sm font-bold text-accent-yellow hover:text-white transition-colors">
+                            Assess my backup risk <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-white/5 lg:border-t-0 lg:border-l p-10 grid sm:grid-cols-2 gap-4 content-start">
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">lock</span>
+                            <p class="font-semibold text-white text-sm mb-1">Immutable Backup Repositories</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Write-once backup storage that ransomware cannot encrypt, delete, or modify — even with admin credentials.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">cloud_sync</span>
+                            <p class="font-semibold text-white text-sm mb-1">Off-Site &amp; Cloud Replication</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Geographically redundant copies ensure your data survives local disasters, power events, and hardware failures.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">fact_check</span>
+                            <p class="font-semibold text-white text-sm mb-1">Automated DR Testing</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Monthly automated recovery tests verify your backups actually restore. No surprises when it counts.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">speed</span>
+                            <p class="font-semibold text-white text-sm mb-1">Defined RTO / RPO</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Contractual Recovery Time and Recovery Point Objectives — we commit to specific restore windows in writing.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">description</span>
+                            <p class="font-semibold text-white text-sm mb-1">DR Runbook &amp; Documentation</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Step-by-step recovery playbooks for every failure scenario, kept current and accessible when your team needs them most.</p>
+                        </div>
+                        <div class="rounded-xl border border-white/5 bg-background-dark p-5">
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">emergency_home</span>
+                            <p class="font-semibold text-white text-sm mb-1">Emergency Recovery Response</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">Guaranteed 1-hour response for active ransomware or data-loss events — we execute the recovery, not just advise.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="py-24 bg-[#080d16]">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="mb-16">
+                <div class="mb-4 flex items-center gap-2 text-accent-yellow">
+                    <span class="h-px w-8 bg-accent-yellow"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Additional Services</span>
+                </div>
+                <h2 class="text-3xl font-bold text-white md:text-4xl">Complete the Stack</h2>
+                <p class="mt-4 text-slate-400 max-w-2xl">Specialized solutions that complement your core IT infrastructure.</p>
+            </div>
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-2xl">router</span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-white">Network Infrastructure</h3>
+                    <p class="text-sm leading-relaxed text-slate-400 mb-5">Structured cabling, enterprise Wi-Fi design, firewall management, SD-WAN deployment, and VLAN segmentation for secure, high-performance networks.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Cisco</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">SD-WAN</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Firewall</span>
+                    </div>
+                </div>
+                <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-2xl">cloud</span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-white">Cloud Services</h3>
+                    <p class="text-sm leading-relaxed text-slate-400 mb-5">Microsoft 365 and Azure administration, AWS deployments, and full cloud migration planning with zero-downtime cutovers for production environments.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Microsoft 365</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Azure</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">AWS</span>
+                    </div>
+                </div>
+                <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-2xl">groups</span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-white">vCIO &amp; IT Consulting</h3>
+                    <p class="text-sm leading-relaxed text-slate-400 mb-5">Strategic IT leadership on demand. Technology roadmaps, budget planning, vendor management, and board-level reporting without the cost of a full-time CIO.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Roadmap</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Budgeting</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Strategy</span>
+                    </div>
+                </div>
+                <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
+                        <span class="material-symbols-outlined text-2xl">medical_services</span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-white">EMR / EHR Integration</h3>
+                    <p class="text-sm leading-relaxed text-slate-400 mb-5">Secure connectivity and support for major EMR/EHR platforms — eClinicalWorks, Epic, Athenahealth — including interface configuration and HL7 troubleshooting.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">HL7</span>
+                        <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">Epic</span>
+                        <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">eCW</span>
+                    </div>
+                </div>
+                <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
+                        <span class="material-symbols-outlined text-2xl">radiology</span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-white">PACS &amp; Imaging Networks</h3>
+                    <p class="text-sm leading-relaxed text-slate-400 mb-5">High-throughput network architecture for DICOM imaging workflows. Storage design, PACS server management, and radiologist workstation optimization.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">DICOM</span>
+                        <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">PACS</span>
+                        <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">10GbE</span>
+                    </div>
+                </div>
+                <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-2xl">headset_mic</span>
+                    </div>
+                    <h3 class="mb-3 text-lg font-bold text-white">VoIP &amp; Communications</h3>
+                    <p class="text-sm leading-relaxed text-slate-400 mb-5">Hosted VoIP systems, unified communications, and secure fax solutions fully integrated with your clinical workflows and HIPAA requirements.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">VoIP</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">Secure Fax</span>
+                        <span class="px-2 py-1 bg-primary/10 rounded text-[10px] text-primary">UCaaS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Engage -->
+    <section class="py-24 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-16 lg:grid-cols-2 items-center">
+                <div>
+                    <div class="mb-4 flex items-center gap-2 text-accent-yellow">
+                        <span class="h-px w-8 bg-accent-yellow"></span>
+                        <span class="text-xs font-bold uppercase tracking-widest">How We Engage</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white md:text-4xl">No Contracts That Lock You In. Just Results That Keep You Here.</h2>
+                    <p class="mt-6 text-slate-400 leading-relaxed">We believe the best client relationship is one where you stay because the service is exceptional — not because the exit clause is expensive.</p>
+                    <div class="mt-10 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5">
+                                <span class="material-symbols-outlined text-sm">check</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white text-sm">Flat monthly pricing</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Predictable costs with no surprise invoices for normal support activity.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5">
+                                <span class="material-symbols-outlined text-sm">check</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white text-sm">Dedicated account engineer</p>
+                                <p class="text-xs text-slate-400 mt-0.5">One engineer who knows your environment — not a rotating help desk queue.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5">
+                                <span class="material-symbols-outlined text-sm">check</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white text-sm">Monthly reporting</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Plain-language reports on system health, incidents resolved, patch status, and security posture.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5">
+                                <span class="material-symbols-outlined text-sm">check</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-white text-sm">Scalable as you grow</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Adding a location, 20 users, or a new EMR system? We scale with you — no re-negotiating from scratch.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-2xl p-8 shadow-2xl">
+                    <div class="mb-6 flex items-center justify-between">
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Typical Onboarding Timeline</p>
+                        <div class="text-xs font-mono text-slate-500">PROCESS_V2</div>
+                    </div>
+                    <div class="space-y-0">
+                        <div class="flex gap-5 pb-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">1</div>
+                                <div class="w-px flex-1 bg-primary/25 mt-1"></div>
+                            </div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-white text-sm">Day 1 — Discovery Call</p>
+                                <p class="text-xs text-slate-400 mt-1">Free assessment to map your environment, identify risks, and confirm scope.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 pb-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">2</div>
+                                <div class="w-px flex-1 bg-primary/25 mt-1"></div>
+                            </div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-white text-sm">Week 1 — Proposal & Sign-off</p>
+                                <p class="text-xs text-slate-400 mt-1">Plain-language service agreement with clear deliverables, SLAs, and pricing.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 pb-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">3</div>
+                                <div class="w-px flex-1 bg-primary/25 mt-1"></div>
+                            </div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-white text-sm">Weeks 2–3 — Deployment</p>
+                                <p class="text-xs text-slate-400 mt-1">Agents deployed, monitoring configured, backups initiated, security stack activated.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5">
+                            <div class="flex flex-col items-center">
+                                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-yellow text-background-dark text-xs font-bold">4</div>
+                            </div>
+                            <div class="pt-1">
+                                <p class="font-semibold text-white text-sm">Week 4 — Fully Managed</p>
+                                <p class="text-xs text-slate-400 mt-1">24/7 monitoring live, your dedicated engineer introduced, first monthly report scheduled.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24">
+        <div class="mx-auto max-w-5xl px-6">
+            <div class="rounded-2xl bg-primary p-12 text-center text-white shadow-2xl relative overflow-hidden">
+                <div class="armor-overlay-wrapper absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <div class="armor-surface absolute inset-0 opacity-75"></div>
+                    <div class="armor-markings absolute inset-0"></div>
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold md:text-4xl">Ready to Hand Off the IT Headaches?</h2>
+                    <p class="mt-6 text-lg opacity-90 max-w-xl mx-auto">Start with a free, no-obligation assessment. We'll show you exactly what we'd do and what it would cost — before you sign anything.</p>
+                    <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+                        <a href="assessment.html" class="rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">
+                            Book Your Free Assessment
+                        </a>
+                        <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17875552233">
+                            <span class="material-symbols-outlined">call</span>
+                            (787) 555-2233
+                        </a>
+                    </div>
+                    <p class="mt-8 text-xs font-medium text-white/50 tracking-wide uppercase italic">No obligation. No pressure. Just clarity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 bg-background-dark py-12 text-slate-400">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid gap-12 lg:grid-cols-4">
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain opacity-90 h-10" src="logo.svg"/></a>
+                </div>
+                <p class="max-w-sm text-sm leading-relaxed">Dedicated to providing healthcare-grade IT infrastructure and cybersecurity solutions across Puerto Rico. Engineering reliability since 2010.</p>
+                <div class="mt-8"><button class="text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-white">Se Habla Español</button></div>
+            </div>
+            <div>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Quick Links</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="services.html">Managed Services</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="cybersecurity.html">Cybersecurity Audit</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="cybersecurity.html">HIPAA Compliance</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="assessment.html">Contact Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h4>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">location_on</span><span>San Juan, Puerto Rico</span></li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">phone</span><span>(787) 555-2233</span></li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">mail</span><span>info@eightsix.co</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-16 border-t border-white/5 pt-8 text-center text-xs">
+            <p>&copy; 2024 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
