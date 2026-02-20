@@ -134,6 +134,7 @@
             <a class="text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
             <a class="text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
             <a class="text-sm font-medium transition-colors hover:text-primary" href="about.html">About</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="tools.html">Free Tools</a>
 
         </nav>
         <div class="flex items-center gap-4">
@@ -154,6 +155,7 @@
             <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
             <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
             <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="about.html">About</a>
+            <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="tools.html">Free Tools</a>
             <div class="pt-4 flex flex-col gap-3">
                 <button class="w-full rounded bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10">Client Login</button>
                 <a href="assessment.html" class="block w-full text-center rounded bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90">Get Assessment</a>
@@ -350,77 +352,16 @@
                                 </div>
                             </div>
 
-                            <!-- Industry + Size -->
-                            <div class="grid gap-5 sm:grid-cols-2">
-                                <div>
-                                    <label class="field-label" for="industry">Industry <span class="req">*</span></label>
-                                    <select class="field-input" id="industry" name="industry" required>
-                                        <option value="" disabled selected>Select your industry</option>
-                                        <option value="medical">Medical Practice</option>
-                                        <option value="radiology">Radiology Center</option>
-                                        <option value="dental">Dental Office</option>
-                                        <option value="multisite">Multi-Site Clinic / Health System</option>
-                                        <option value="law">Law Firm</option>
-                                        <option value="accounting">Accounting / Finance</option>
-                                        <option value="other">Other Professional Office</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="field-label" for="size">Number of Workstations / Users <span class="req">*</span></label>
-                                    <select class="field-input" id="size" name="size" required>
-                                        <option value="" disabled selected>Select a range</option>
-                                        <option value="1-10">1 – 10</option>
-                                        <option value="11-25">11 – 25</option>
-                                        <option value="26-50">26 – 50</option>
-                                        <option value="51-100">51 – 100</option>
-                                        <option value="100+">100+</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Concerns (checkboxes) -->
+                            <!-- Best Time to Contact -->
                             <div>
-                                <label class="field-label">Primary Concerns <span class="text-slate-500 normal-case tracking-normal font-normal">(select all that apply)</span></label>
-                                <div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="hipaa"/>
-                                        <span>HIPAA Compliance</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="ransomware"/>
-                                        <span>Ransomware Protection</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="managed_it"/>
-                                        <span>Managed IT Support</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="network"/>
-                                        <span>Network Performance</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="cybersecurity"/>
-                                        <span>Cybersecurity Gaps</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="backup"/>
-                                        <span>Backup &amp; Recovery</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="cloud"/>
-                                        <span>Cloud Migration</span>
-                                    </label>
-                                    <label class="check-item">
-                                        <input name="concerns" type="checkbox" value="compliance_other"/>
-                                        <span>Other Compliance</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Notes -->
-                            <div>
-                                <label class="field-label" for="notes">Anything else we should know?</label>
-                                <textarea class="field-input resize-none" id="notes" name="notes" placeholder="Describe your current setup, a recent incident, or a specific concern you want us to focus on..." rows="4"></textarea>
+                                <label class="field-label" for="best-time">Best Time to Contact <span class="req">*</span></label>
+                                <select class="field-input" id="best-time" name="best_time" required>
+                                    <option value="" disabled selected>Select a time</option>
+                                    <option value="morning">Morning (8am – 12pm)</option>
+                                    <option value="afternoon">Afternoon (12pm – 5pm)</option>
+                                    <option value="evening">Evening (5pm – 7pm)</option>
+                                    <option value="anytime">Anytime</option>
+                                </select>
                             </div>
 
                             <!-- Error message -->

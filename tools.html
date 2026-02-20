@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Free Security Tools | Eight Six IT Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1f3a89",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#0B1220",
+                    "accent-red": "#D62828",
+                    "accent-yellow": "#F4C430",
+                    "card-dark": "#151f3d",
+                },
+                fontFamily: { "display": ["Space Grotesk", "sans-serif"] },
+                borderRadius: {
+                    "DEFAULT": "0.25rem", "lg": "0.5rem",
+                    "xl": "0.75rem", "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    :root { --panel-line:0.12; --panel-shadow:0.07; --panel-decal:0.05; }
+    .armor-surface {
+        position:absolute; inset:0; pointer-events:none;
+        background-repeat:repeat; background-size:1600px 900px; background-position:0 0;
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='none'/%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%23E5E7EB' stroke-opacity='0.12' stroke-width='1.2'%3E%3Cpath d='M40 70 H420 L470 120 V260 L420 310 H70 L40 280 Z'/%3E%3Cpath d='M520 40 H970 L1025 90 V235 L980 280 H560 L520 240 Z'/%3E%3Cpath d='M1120 55 H1540 V240 H1285 L1215 310 H1120 Z'/%3E%3Cpath d='M80 390 H520 L600 470 V700 H280 L80 520 Z'/%3E%3Cpath d='M640 360 H1020 L1100 440 V520 L1045 575 H700 L640 520 Z'/%3E%3Cpath d='M1160 360 H1540 V650 H1280 L1205 725 H1160 Z'/%3E%3Cpath d='M620 610 H1120 V820 H680 L620 760 Z'/%3E%3Cpath d='M40 740 H520 V860 H150 L40 780 Z'/%3E%3Cpath d='M1180 700 H1540 V860 H1320 L1180 820 Z'/%3E%3C/g%3E%3Cg stroke='%23000000' stroke-opacity='0.07' stroke-width='1.2'%3E%3Cpath d='M41 71 H421 L471 121 V261 L421 311 H71 L41 281 Z'/%3E%3Cpath d='M521 41 H971 L1026 91 V236 L981 281 H561 L521 241 Z'/%3E%3Cpath d='M1121 56 H1541 V241 H1286 L1216 311 H1121 Z'/%3E%3Cpath d='M81 391 H521 L601 471 V701 H281 L81 521 Z'/%3E%3Cpath d='M641 361 H1021 L1101 441 V521 L1046 576 H701 L641 521 Z'/%3E%3Cpath d='M1161 361 H1541 V651 H1281 L1206 726 H1161 Z'/%3E%3Cpath d='M621 611 H1121 V821 H681 L621 761 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .armor-markings {
+        position:absolute; inset:0; pointer-events:none;
+        background-repeat:repeat; background-size:1600px 900px; background-position:0 0;
+        opacity:var(--panel-decal);
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Cg fill='%23E5E7EB' font-family='monospace' font-size='10' font-weight='bold'%3E%3Ctext x='50' y='65'%3EE86-01%3C/text%3E%3Ctext x='530' y='35'%3ERX-78-2%3C/text%3E%3Ctext x='1130' y='50'%3ECAUTION%3C/text%3E%3Ctext x='90' y='405'%3EPANEL A7%3C/text%3E%3Ctext x='650' y='375'%3ESERVICE PORT%3C/text%3E%3Ctext x='1170' y='375'%3ECORE UNIT%3C/text%3E%3Ctext x='630' y='625'%3EDO NOT REMOVE%3C/text%3E%3Ctext x='50' y='735'%3EACCESS HATCH%3C/text%3E%3Ctext x='1190' y='715'%3ESYSTEM CHECK%3C/text%3E%3Cpath d='M40 70 l10 0 M40 70 l0 10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M1540 55 l-10 0 M1540 55 l0 10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M40 860 l10 0 M40 860 l0 -10' stroke='%23E5E7EB' stroke-width='1'/%3E%3Cpath d='M1540 860 l-10 0 M1540 860 l0 -10' stroke='%23E5E7EB' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .glass-panel { background:rgba(21,31,61,0.6); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.05); }
+    .tool-card { background:rgba(21,31,61,0.5); border:1px solid rgba(255,255,255,0.07); border-radius:0.75rem; }
+    .strength-bar { height:6px; border-radius:3px; transition:width 0.3s ease, background-color 0.3s ease; }
+    .check-row { display:flex; align-items:center; gap:8px; font-size:0.8rem; margin-top:6px; }
+    .check-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    input[type=range] { accent-color:#1f3a89; }
+    .quiz-option { cursor:pointer; border:1px solid rgba(255,255,255,0.1); border-radius:0.5rem; padding:0.75rem 1rem; transition:all 0.2s; }
+    .quiz-option:hover { border-color:rgba(31,58,137,0.6); background:rgba(31,58,137,0.15); }
+    .quiz-option.selected-yes { border-color:#22c55e; background:rgba(34,197,94,0.1); }
+    .quiz-option.selected-no { border-color:#ef4444; background:rgba(239,68,68,0.1); }
+</style>
+</head>
+<body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-3">
+            <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain h-[50px]" src="logo.svg"/></a>
+        </div>
+        <nav class="hidden items-center gap-8 lg:flex">
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="services.html">Services</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
+            <a class="text-sm font-medium transition-colors hover:text-primary" href="about.html">About</a>
+            <a class="text-sm font-medium text-primary border-b border-primary pb-0.5" href="tools.html">Free Tools</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</button>
+            <a href="assessment.html" class="hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Get Assessment</a>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
+            <span class="material-symbols-outlined" id="menu-icon">menu</span>
+        </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 bg-background-dark/95 backdrop-blur-md">
+        <nav class="flex flex-col px-6 py-4 gap-1">
+            <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="services.html">Services</a>
+            <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
+            <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
+            <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="about.html">About</a>
+            <a class="text-sm font-medium py-3 border-b border-white/5 text-primary" href="tools.html">Free Tools</a>
+            <div class="pt-4 flex flex-col gap-3">
+                <button class="w-full rounded bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10">Client Login</button>
+                <a href="assessment.html" class="block w-full text-center rounded bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90">Get Assessment</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<!-- Hero -->
+<section class="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-16" style="background: radial-gradient(circle at 50% 0%, rgba(31, 58, 137, 0.2) 0%, rgba(11, 18, 32, 1) 100%);">
+    <div class="armor-overlay-wrapper absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="armor-surface absolute inset-0 opacity-50"></div>
+        <div class="armor-markings absolute inset-0"></div>
+    </div>
+    <div class="mx-auto max-w-7xl px-6 relative z-10 text-center">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+            <span class="material-symbols-outlined text-sm">construction</span>
+            Free Security Tools
+        </div>
+        <h1 class="mt-4 text-3xl font-bold text-white md:text-5xl">Know Your Risk. <span class="text-primary">For Free.</span></h1>
+        <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-400">No sign-up required. Run these tools directly in your browser — nothing leaves your device except where noted.</p>
+    </div>
+</section>
+
+<!-- Tools -->
+<section class="py-16">
+    <div class="mx-auto max-w-5xl px-6 space-y-10">
+
+        <!-- ── TOOL 1: Password Strength Checker ── -->
+        <div class="tool-card p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined text-primary text-3xl">lock</span>
+                <div>
+                    <h2 class="text-xl font-bold text-white">Password Strength Checker</h2>
+                    <p class="text-sm text-slate-400">Real-time analysis — nothing is sent over the network.</p>
+                </div>
+            </div>
+            <div class="relative mb-4">
+                <input id="pw-input" type="password" placeholder="Type or paste a password..." class="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 pr-12 text-white placeholder-slate-500 focus:outline-none focus:border-primary/60 transition-colors"/>
+                <button id="pw-toggle" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white" title="Show/hide">
+                    <span class="material-symbols-outlined text-xl" id="pw-eye">visibility</span>
+                </button>
+            </div>
+            <!-- Strength bar -->
+            <div class="h-1.5 w-full rounded bg-white/10 mb-3">
+                <div id="pw-bar" class="strength-bar w-0 bg-slate-600"></div>
+            </div>
+            <div class="flex items-center justify-between mb-4">
+                <span id="pw-label" class="text-sm font-bold text-slate-500">Enter a password above</span>
+                <span id="pw-crack" class="text-xs text-slate-500"></span>
+            </div>
+            <!-- Criteria -->
+            <div class="grid grid-cols-2 gap-x-6 gap-y-1 sm:grid-cols-3">
+                <div class="check-row"><span class="check-dot bg-slate-600" id="c-len8"></span><span class="text-slate-400">At least 8 characters</span></div>
+                <div class="check-row"><span class="check-dot bg-slate-600" id="c-len12"></span><span class="text-slate-400">At least 12 characters</span></div>
+                <div class="check-row"><span class="check-dot bg-slate-600" id="c-upper"></span><span class="text-slate-400">Uppercase letter</span></div>
+                <div class="check-row"><span class="check-dot bg-slate-600" id="c-lower"></span><span class="text-slate-400">Lowercase letter</span></div>
+                <div class="check-row"><span class="check-dot bg-slate-600" id="c-num"></span><span class="text-slate-400">Number</span></div>
+                <div class="check-row"><span class="check-dot bg-slate-600" id="c-sym"></span><span class="text-slate-400">Special character</span></div>
+            </div>
+        </div>
+
+        <!-- ── TOOL 2: Password Generator ── -->
+        <div class="tool-card p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined text-primary text-3xl">key</span>
+                <div>
+                    <h2 class="text-xl font-bold text-white">Password Generator</h2>
+                    <p class="text-sm text-slate-400">Generate a strong random password instantly.</p>
+                </div>
+            </div>
+            <!-- Generated output -->
+            <div class="flex gap-2 mb-6">
+                <div id="gen-output" class="flex-1 rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white font-mono text-sm tracking-wider break-all select-all">Click Generate to create a password</div>
+                <button id="gen-copy" class="flex-shrink-0 flex items-center gap-1 rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-base" id="copy-icon">content_copy</span>
+                </button>
+            </div>
+            <!-- Length slider -->
+            <div class="mb-5">
+                <div class="flex justify-between mb-2">
+                    <label class="text-sm font-medium text-slate-300">Length</label>
+                    <span id="gen-len-label" class="text-sm font-bold text-primary">16</span>
+                </div>
+                <input id="gen-len" type="range" min="8" max="64" value="16" class="w-full"/>
+            </div>
+            <!-- Options -->
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-6">
+                <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-300"><input id="gen-upper" type="checkbox" checked class="accent-primary"/> Uppercase</label>
+                <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-300"><input id="gen-lower" type="checkbox" checked class="accent-primary"/> Lowercase</label>
+                <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-300"><input id="gen-nums" type="checkbox" checked class="accent-primary"/> Numbers</label>
+                <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-300"><input id="gen-syms" type="checkbox" checked class="accent-primary"/> Symbols</label>
+            </div>
+            <button id="gen-btn" class="w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">refresh</span> Generate Password
+            </button>
+        </div>
+
+        <!-- ── TOOL 3: Breach Email Checker ── -->
+        <div class="tool-card p-8">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="material-symbols-outlined text-primary text-3xl">gpp_bad</span>
+                <div>
+                    <h2 class="text-xl font-bold text-white">Email Breach Checker</h2>
+                    <p class="text-sm text-slate-400">Check if your email has appeared in a known data breach.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mb-6">Powered by <a href="https://xposedornot.com" target="_blank" rel="noopener" class="text-primary hover:underline">XposedOrNot</a>. Your email is sent to their API to perform the lookup.</p>
+            <div class="flex gap-2 mb-4">
+                <input id="breach-input" type="email" placeholder="yourname@example.com" class="flex-1 rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/60 transition-colors"/>
+                <button id="breach-btn" class="flex-shrink-0 rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Check</button>
+            </div>
+            <div id="breach-result" class="hidden rounded-lg p-4 text-sm"></div>
+        </div>
+
+        <!-- ── TOOL 4: Phishing URL Analyzer ── -->
+        <div class="tool-card p-8">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="material-symbols-outlined text-primary text-3xl">phishing</span>
+                <div>
+                    <h2 class="text-xl font-bold text-white">Phishing URL Analyzer</h2>
+                    <p class="text-sm text-slate-400">Analyzes a URL for common phishing indicators — runs entirely in your browser.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mb-6">Does not visit the URL. Pattern-based analysis only.</p>
+            <div class="flex gap-2 mb-4">
+                <input id="url-input" type="text" placeholder="https://example.com/login" class="flex-1 rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/60 transition-colors font-mono text-sm"/>
+                <button id="url-btn" class="flex-shrink-0 rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors">Analyze</button>
+            </div>
+            <div id="url-result" class="hidden"></div>
+        </div>
+
+        <!-- ── TOOL 5: HIPAA Readiness Quiz ── -->
+        <div class="tool-card p-8">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="material-symbols-outlined text-primary text-3xl">health_and_safety</span>
+                <div>
+                    <h2 class="text-xl font-bold text-white">HIPAA Readiness Quiz</h2>
+                    <p class="text-sm text-slate-400">10 quick questions to gauge your organization's HIPAA posture.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mb-6">Results are not stored. This is a self-assessment only, not a legal audit.</p>
+            <div id="quiz-container" class="space-y-6"></div>
+            <div id="quiz-result" class="hidden mt-8 rounded-xl p-6 border"></div>
+            <button id="quiz-submit" class="hidden mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">check_circle</span> See My Results
+            </button>
+            <button id="quiz-reset" class="hidden mt-3 w-full rounded-lg bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 transition-colors">Retake Quiz</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="rounded-2xl bg-primary p-12 text-center text-white shadow-2xl relative overflow-hidden">
+            <div class="armor-overlay-wrapper absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div class="armor-surface absolute inset-0 opacity-75"></div>
+                <div class="armor-markings absolute inset-0"></div>
+            </div>
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold md:text-4xl">Want a Real Security Assessment?</h2>
+                <p class="mt-6 text-lg opacity-90 max-w-xl mx-auto">These tools give you a snapshot. Our engineers give you a full picture — and a plan to fix it.</p>
+                <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+                    <a href="assessment.html" class="rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">Book Your Free Assessment</a>
+                    <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
+                        <span class="material-symbols-outlined">call</span>
+                        (787) 714-9556
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 bg-background-dark py-12 text-slate-400">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid gap-12 lg:grid-cols-4">
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain opacity-90 h-[50px]" src="logo.svg"/></a>
+                </div>
+                <p class="max-w-sm text-sm leading-relaxed">Dedicated to providing healthcare-grade IT infrastructure and cybersecurity solutions across Puerto Rico. Engineering reliability since 2010.</p>
+            </div>
+            <div>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Quick Links</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="services.html">Managed Services</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="cybersecurity.html">Cybersecurity Audit</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="tools.html">Free Security Tools</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="assessment.html">Contact Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h4>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">location_on</span><span>San Juan, Puerto Rico</span></li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">phone</span><span>(787) 714-9556</span></li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-0.5">mail</span><span>info@eightsix.co</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-16 border-t border-white/5 pt-8 text-center text-xs">
+            <p>&copy; 2024 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function () {
+
+    /* ── Hamburger ── */
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var icon = document.getElementById('menu-icon');
+    if (btn && menu && icon) {
+        btn.addEventListener('click', function () {
+            var isOpen = !menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            icon.textContent = isOpen ? 'menu' : 'close';
+        });
+    }
+
+    /* ══════════════════════════════════════
+       TOOL 1 — Password Strength Checker
+    ══════════════════════════════════════ */
+    var pwInput = document.getElementById('pw-input');
+    var pwBar   = document.getElementById('pw-bar');
+    var pwLabel = document.getElementById('pw-label');
+    var pwCrack = document.getElementById('pw-crack');
+    var pwToggle = document.getElementById('pw-toggle');
+    var pwEye    = document.getElementById('pw-eye');
+
+    var crackTimes = [
+        'Cracked instantly',
+        'Cracked in seconds',
+        'Cracked in minutes',
+        'Cracked in hours',
+        'Cracked in days',
+        'Cracked in months',
+        'Cracked in years',
+        'Estimated: centuries to crack'
+    ];
+
+    function setDot(id, pass) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.style.backgroundColor = pass ? '#22c55e' : '#475569';
+    }
+
+    function scorePassword(pw) {
+        if (!pw) return 0;
+        var score = 0;
+        if (pw.length >= 8)  score += 1;
+        if (pw.length >= 12) score += 1;
+        if (pw.length >= 16) score += 1;
+        if (/[A-Z]/.test(pw)) score += 1;
+        if (/[a-z]/.test(pw)) score += 1;
+        if (/[0-9]/.test(pw)) score += 1;
+        if (/[^A-Za-z0-9]/.test(pw)) score += 2;
+        // penalize repetition
+        if (/(.)\1{2,}/.test(pw)) score = Math.max(0, score - 2);
+        return Math.min(score, 7);
+    }
+
+    var barColors = ['#ef4444','#ef4444','#f97316','#eab308','#eab308','#22c55e','#22c55e','#22c55e'];
+    var barLabels = ['Very Weak','Weak','Weak','Fair','Fair','Strong','Strong','Very Strong'];
+
+    function updatePwChecker() {
+        var pw = pwInput.value;
+        var score = scorePassword(pw);
+        var pct = pw.length === 0 ? 0 : Math.max(6, Math.round((score / 7) * 100));
+        pwBar.style.width = pct + '%';
+        pwBar.style.backgroundColor = pw.length ? barColors[score] : '#475569';
+        pwLabel.textContent = pw.length ? barLabels[score] : 'Enter a password above';
+        pwLabel.style.color  = pw.length ? barColors[score] : '#64748b';
+        pwCrack.textContent  = pw.length ? crackTimes[score] : '';
+        setDot('c-len8',  pw.length >= 8);
+        setDot('c-len12', pw.length >= 12);
+        setDot('c-upper', /[A-Z]/.test(pw));
+        setDot('c-lower', /[a-z]/.test(pw));
+        setDot('c-num',   /[0-9]/.test(pw));
+        setDot('c-sym',   /[^A-Za-z0-9]/.test(pw));
+    }
+
+    pwInput.addEventListener('input', updatePwChecker);
+    pwToggle.addEventListener('click', function () {
+        var show = pwInput.type === 'password';
+        pwInput.type = show ? 'text' : 'password';
+        pwEye.textContent = show ? 'visibility_off' : 'visibility';
+    });
+
+    /* ══════════════════════════════════════
+       TOOL 2 — Password Generator
+    ══════════════════════════════════════ */
+    var genLen    = document.getElementById('gen-len');
+    var genLabel  = document.getElementById('gen-len-label');
+    var genOutput = document.getElementById('gen-output');
+    var genBtn    = document.getElementById('gen-btn');
+    var genCopy   = document.getElementById('gen-copy');
+    var copyIcon  = document.getElementById('copy-icon');
+
+    var UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    var NUMS  = '0123456789';
+    var SYMS  = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+
+    genLen.addEventListener('input', function () { genLabel.textContent = genLen.value; });
+
+    function generatePassword() {
+        var charset = '';
+        var required = [];
+        if (document.getElementById('gen-upper').checked) { charset += UPPER; required.push(UPPER); }
+        if (document.getElementById('gen-lower').checked) { charset += LOWER; required.push(LOWER); }
+        if (document.getElementById('gen-nums').checked)  { charset += NUMS;  required.push(NUMS); }
+        if (document.getElementById('gen-syms').checked)  { charset += SYMS;  required.push(SYMS); }
+        if (!charset) { genOutput.textContent = 'Select at least one character type.'; return; }
+        var len = parseInt(genLen.value);
+        var arr = new Uint32Array(len);
+        window.crypto.getRandomValues(arr);
+        var pw = '';
+        // ensure at least one from each required set
+        required.forEach(function (set) {
+            var idx = window.crypto.getRandomValues(new Uint32Array(1))[0] % set.length;
+            pw += set[idx];
+        });
+        for (var i = pw.length; i < len; i++) {
+            pw += charset[arr[i] % charset.length];
+        }
+        // shuffle
+        pw = pw.split('').sort(function () { return window.crypto.getRandomValues(new Uint32Array(1))[0] % 3 - 1; }).join('');
+        genOutput.textContent = pw;
+    }
+
+    genBtn.addEventListener('click', generatePassword);
+    generatePassword();
+
+    genCopy.addEventListener('click', function () {
+        var text = genOutput.textContent;
+        if (!text || text === 'Select at least one character type.') return;
+        navigator.clipboard.writeText(text).then(function () {
+            copyIcon.textContent = 'check';
+            setTimeout(function () { copyIcon.textContent = 'content_copy'; }, 1500);
+        });
+    });
+
+    /* ══════════════════════════════════════
+       TOOL 3 — Email Breach Checker
+    ══════════════════════════════════════ */
+    var breachInput  = document.getElementById('breach-input');
+    var breachBtn    = document.getElementById('breach-btn');
+    var breachResult = document.getElementById('breach-result');
+
+    breachBtn.addEventListener('click', function () {
+        var email = breachInput.value.trim();
+        if (!email || !email.includes('@')) {
+            showBreachResult('error', 'Please enter a valid email address.');
+            return;
+        }
+        breachBtn.disabled = true;
+        breachBtn.textContent = 'Checking…';
+        breachResult.className = 'hidden';
+
+        fetch('https://api.xposedornot.com/v1/check-email/' + encodeURIComponent(email))
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.breaches && data.breaches.length > 0) {
+                    var list = data.breaches.join(', ');
+                    showBreachResult('danger',
+                        '<strong>&#9888; Found in ' + data.breaches.length + ' breach(es)</strong><br/>' +
+                        '<span class="opacity-80">Sources: ' + list + '</span><br/>' +
+                        '<span class="opacity-60 text-xs mt-1 block">Change your password immediately and enable two-factor authentication.</span>'
+                    );
+                } else {
+                    showBreachResult('safe', '&#10003; &nbsp;No breaches found for this email address. Stay vigilant — new breaches are discovered daily.');
+                }
+            })
+            .catch(function () {
+                showBreachResult('error', 'Unable to reach the breach database. Please try again later.');
+            })
+            .finally(function () {
+                breachBtn.disabled = false;
+                breachBtn.textContent = 'Check';
+            });
+    });
+
+    function showBreachResult(type, html) {
+        breachResult.classList.remove('hidden');
+        if (type === 'safe')   { breachResult.className = 'rounded-lg p-4 text-sm border border-green-500/30 bg-green-500/10 text-green-400'; }
+        if (type === 'danger') { breachResult.className = 'rounded-lg p-4 text-sm border border-red-500/30 bg-red-500/10 text-red-400'; }
+        if (type === 'error')  { breachResult.className = 'rounded-lg p-4 text-sm border border-yellow-500/30 bg-yellow-500/10 text-yellow-400'; }
+        breachResult.innerHTML = html;
+    }
+
+    /* ══════════════════════════════════════
+       TOOL 4 — Phishing URL Analyzer
+    ══════════════════════════════════════ */
+    var urlInput  = document.getElementById('url-input');
+    var urlBtn    = document.getElementById('url-btn');
+    var urlResult = document.getElementById('url-result');
+
+    var SUSPICIOUS_TLDS = ['.xyz','.tk','.ml','.ga','.cf','.gq','.top','.click','.link','.work','.loan','.win','.download','.bid','.trade'];
+    var BRAND_KEYWORDS  = ['paypal','amazon','apple','google','microsoft','facebook','instagram','netflix','wellsfargo','bankofamerica','chase','irs','usps','fedex','dhl'];
+
+    urlBtn.addEventListener('click', function () {
+        var raw = urlInput.value.trim();
+        if (!raw) { urlResult.innerHTML = ''; urlResult.className = 'hidden'; return; }
+        if (!/^https?:\/\//i.test(raw)) raw = 'http://' + raw;
+
+        var flags = [];
+        var url;
+        try { url = new URL(raw); } catch (e) { flags.push({ level: 'high', msg: 'Invalid URL format' }); }
+
+        if (url) {
+            var host = url.hostname.toLowerCase();
+            var path = url.pathname + url.search;
+
+            if (url.protocol === 'http:') flags.push({ level: 'medium', msg: 'Not HTTPS — connection is unencrypted' });
+            if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) flags.push({ level: 'high', msg: 'IP address used instead of domain name' });
+            if ((host.match(/\./g) || []).length > 3) flags.push({ level: 'medium', msg: 'Unusually many subdomains (' + host + ')' });
+            if (raw.length > 100) flags.push({ level: 'low', msg: 'Very long URL (' + raw.length + ' characters)' });
+            if (raw.includes('@')) flags.push({ level: 'high', msg: '@ symbol in URL — common phishing trick' });
+            if (/%[0-9a-f]{2}/i.test(raw) && (raw.match(/%[0-9a-f]{2}/gi) || []).length > 5) flags.push({ level: 'medium', msg: 'Heavy URL encoding detected' });
+            if (/xn--/.test(host)) flags.push({ level: 'high', msg: 'Internationalized (punycode) domain — may spoof real brands' });
+
+            // Typosquatting
+            var domainParts = host.replace('www.', '').split('.');
+            var domainName  = domainParts[0];
+            BRAND_KEYWORDS.forEach(function (brand) {
+                if (domainName !== brand && domainName.includes(brand)) {
+                    flags.push({ level: 'high', msg: 'Domain contains brand keyword "' + brand + '" but is not the official domain' });
+                }
+            });
+
+            // Suspicious TLD
+            SUSPICIOUS_TLDS.forEach(function (tld) {
+                if (host.endsWith(tld)) flags.push({ level: 'medium', msg: 'Suspicious top-level domain: ' + tld });
+            });
+
+            if (path.toLowerCase().includes('login') || path.toLowerCase().includes('signin') || path.toLowerCase().includes('verify') || path.toLowerCase().includes('account')) {
+                flags.push({ level: 'low', msg: 'URL path contains authentication-related keywords' });
+            }
+        }
+
+        var score = flags.reduce(function (s, f) { return s + (f.level === 'high' ? 3 : f.level === 'medium' ? 2 : 1); }, 0);
+        var riskLabel, riskColor, borderColor;
+        if (score === 0)      { riskLabel = 'Low Risk';    riskColor = 'text-green-400';  borderColor = 'border-green-500/30 bg-green-500/10'; }
+        else if (score <= 3)  { riskLabel = 'Moderate Risk'; riskColor = 'text-yellow-400'; borderColor = 'border-yellow-500/30 bg-yellow-500/10'; }
+        else if (score <= 6)  { riskLabel = 'High Risk';   riskColor = 'text-orange-400'; borderColor = 'border-orange-500/30 bg-orange-500/10'; }
+        else                  { riskLabel = 'Very High Risk'; riskColor = 'text-red-400'; borderColor = 'border-red-500/30 bg-red-500/10'; }
+
+        var levelColors = { high: 'text-red-400', medium: 'text-yellow-400', low: 'text-slate-400' };
+        var levelBadge  = { high: 'bg-red-500/20 text-red-400', medium: 'bg-yellow-500/20 text-yellow-400', low: 'bg-slate-500/20 text-slate-400' };
+
+        var flagsHtml = flags.length === 0
+            ? '<p class="text-green-400 text-sm mt-3">No suspicious patterns detected.</p>'
+            : flags.map(function (f) {
+                return '<div class="flex items-start gap-2 text-sm mt-2"><span class="inline-block px-1.5 py-0.5 rounded text-xs font-bold ' + levelBadge[f.level] + ' flex-shrink-0">' + f.level.toUpperCase() + '</span><span class="' + levelColors[f.level] + '">' + f.msg + '</span></div>';
+              }).join('');
+
+        urlResult.className = 'rounded-lg p-4 border ' + borderColor;
+        urlResult.innerHTML = '<div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined ' + riskColor + '">security</span><span class="font-bold ' + riskColor + '">' + riskLabel + '</span><span class="text-xs text-slate-500 ml-1">(' + flags.length + ' indicator' + (flags.length !== 1 ? 's' : '') + ')</span></div>' + flagsHtml;
+    });
+
+    /* ══════════════════════════════════════
+       TOOL 5 — HIPAA Readiness Quiz
+    ══════════════════════════════════════ */
+    var quizQuestions = [
+        { q: 'Do you have a signed Business Associate Agreement (BAA) with all third-party vendors who handle patient data?' },
+        { q: 'Have all staff members who access patient health information completed HIPAA training in the past 12 months?' },
+        { q: 'Are all devices that access patient data (laptops, phones, tablets) encrypted?' },
+        { q: 'Do you have a documented incident response plan in case of a data breach?' },
+        { q: 'Are access controls in place so that staff only see the minimum patient data necessary for their role?' },
+        { q: 'Do you perform regular risk assessments to identify vulnerabilities in your systems?' },
+        { q: 'Are all electronic patient records backed up securely, with backups tested regularly?' },
+        { q: 'Do you use multi-factor authentication (MFA) to log into systems containing patient data?' },
+        { q: 'Is physical access to servers, workstations, and records restricted to authorized personnel?' },
+        { q: 'Have you reviewed and updated your HIPAA policies and procedures within the past year?' }
+    ];
+
+    var quizAnswers = {};
+    var quizContainer = document.getElementById('quiz-container');
+    var quizSubmit    = document.getElementById('quiz-submit');
+    var quizReset     = document.getElementById('quiz-reset');
+    var quizResult    = document.getElementById('quiz-result');
+
+    quizQuestions.forEach(function (item, i) {
+        var div = document.createElement('div');
+        div.innerHTML =
+            '<p class="text-sm font-semibold text-slate-200 mb-3"><span class="text-primary font-bold mr-1">' + (i + 1) + '.</span>' + item.q + '</p>' +
+            '<div class="flex gap-3">' +
+            '<div class="quiz-option flex-1 text-center text-sm font-bold" data-q="' + i + '" data-a="yes">Yes</div>' +
+            '<div class="quiz-option flex-1 text-center text-sm font-bold" data-q="' + i + '" data-a="no">No</div>' +
+            '</div>';
+        quizContainer.appendChild(div);
+    });
+
+    quizContainer.addEventListener('click', function (e) {
+        var opt = e.target.closest('.quiz-option');
+        if (!opt) return;
+        var q = opt.dataset.q;
+        var a = opt.dataset.a;
+        quizAnswers[q] = a;
+        // update siblings
+        var siblings = quizContainer.querySelectorAll('[data-q="' + q + '"]');
+        siblings.forEach(function (s) {
+            s.classList.remove('selected-yes', 'selected-no');
+            if (s.dataset.a === a) s.classList.add(a === 'yes' ? 'selected-yes' : 'selected-no');
+        });
+        if (Object.keys(quizAnswers).length === quizQuestions.length) {
+            quizSubmit.classList.remove('hidden');
+        }
+    });
+
+    quizSubmit.addEventListener('click', function () {
+        var yes = Object.values(quizAnswers).filter(function (v) { return v === 'yes'; }).length;
+        var pct = Math.round((yes / quizQuestions.length) * 100);
+        var level, color, border, advice;
+        if (pct >= 90)      { level = 'Strong Posture';   color = 'text-green-400';  border = 'border-green-500/30 bg-green-500/10';   advice = 'You have a solid HIPAA foundation. Schedule annual audits to maintain compliance and stay current with updates.'; }
+        else if (pct >= 70) { level = 'Moderate Posture'; color = 'text-yellow-400'; border = 'border-yellow-500/30 bg-yellow-500/10'; advice = 'You have the basics in place but there are gaps. Address the "No" answers above — they represent real liability.'; }
+        else if (pct >= 50) { level = 'Needs Attention';  color = 'text-orange-400'; border = 'border-orange-500/30 bg-orange-500/10'; advice = 'Several critical safeguards are missing. A breach today could result in significant fines. Contact us for a guided remediation plan.'; }
+        else                { level = 'High Risk';         color = 'text-red-400';    border = 'border-red-500/30 bg-red-500/10';       advice = 'Your organization has significant HIPAA exposure. We strongly recommend an immediate professional assessment.'; }
+
+        quizResult.className = 'mt-8 rounded-xl p-6 border ' + border;
+        quizResult.innerHTML =
+            '<div class="flex items-center gap-3 mb-3">' +
+            '<span class="text-4xl font-bold ' + color + '">' + pct + '%</span>' +
+            '<div><p class="font-bold text-white">' + level + '</p><p class="text-xs text-slate-400">' + yes + ' of ' + quizQuestions.length + ' safeguards in place</p></div>' +
+            '</div>' +
+            '<p class="text-sm text-slate-300 mb-4">' + advice + '</p>' +
+            '<a href="assessment.html" class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors"><span class="material-symbols-outlined text-base">arrow_forward</span>Get a Professional Assessment</a>';
+        quizResult.classList.remove('hidden');
+        quizSubmit.classList.add('hidden');
+        quizReset.classList.remove('hidden');
+    });
+
+    quizReset.addEventListener('click', function () {
+        quizAnswers = {};
+        quizContainer.querySelectorAll('.quiz-option').forEach(function (o) {
+            o.classList.remove('selected-yes', 'selected-no');
+        });
+        quizResult.classList.add('hidden');
+        quizReset.classList.add('hidden');
+        quizSubmit.classList.add('hidden');
+    });
+
+})();
+</script>
+</body>
+</html>
