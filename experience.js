@@ -426,17 +426,35 @@
         group.position.y = 0.15;
         scene.add(group);
 
-        // Wireframe shield + golden core — the brand, in 3D
+        // Wireframe shield + golden core — pushed deep and dimmed so it
+        // reads as ambient texture and never competes with the headline
+        var shieldGroup = new THREE.Group();
+        shieldGroup.position.set(0, -1.1, -3.2);
         var shield = new THREE.Mesh(
             new THREE.IcosahedronGeometry(2.25, 1),
-            new THREE.MeshBasicMaterial({ color: 0x4f6fc4, wireframe: true, transparent: true, opacity: 0.4 })
+            new THREE.MeshBasicMaterial({ color: 0x4f6fc4, wireframe: true, transparent: true, opacity: 0.13 })
         );
         var core = new THREE.Mesh(
             new THREE.IcosahedronGeometry(1.15, 1),
-            new THREE.MeshBasicMaterial({ color: 0xf4c430, wireframe: true, transparent: true, opacity: 0.16 })
+            new THREE.MeshBasicMaterial({ color: 0xf4c430, wireframe: true, transparent: true, opacity: 0.06 })
         );
-        group.add(shield);
-        group.add(core);
+        shieldGroup.add(shield);
+        shieldGroup.add(core);
+        group.add(shieldGroup);
+
+        // Soft round glow sprite so points don't render as hard squares
+        var sprite = (function () {
+            var c = document.createElement('canvas');
+            c.width = c.height = 64;
+            var g = c.getContext('2d');
+            var grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+            grad.addColorStop(0, 'rgba(255,255,255,1)');
+            grad.addColorStop(0.35, 'rgba(255,255,255,0.7)');
+            grad.addColorStop(1, 'rgba(255,255,255,0)');
+            g.fillStyle = grad;
+            g.fillRect(0, 0, 64, 64);
+            return new THREE.CanvasTexture(c);
+        })();
 
         function makePoints(count, color, size, rMin, rMax, opacity) {
             var arr = new Float32Array(count * 3);
@@ -452,11 +470,12 @@
             geo.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
             return new THREE.Points(geo, new THREE.PointsMaterial({
                 color: color, size: size, transparent: true, opacity: opacity,
-                sizeAttenuation: true, depthWrite: false
+                sizeAttenuation: true, depthWrite: false,
+                map: sprite, blending: THREE.AdditiveBlending
             }));
         }
-        var dustBlue = makePoints(620, 0x7d98e0, 0.05, 2.9, 6.4, 0.7);
-        var dustGold = makePoints(70, 0xf4c430, 0.08, 3.0, 6.0, 0.85);
+        var dustBlue = makePoints(620, 0x7d98e0, 0.06, 3.3, 6.4, 0.65);
+        var dustGold = makePoints(70, 0xf4c430, 0.09, 3.4, 6.0, 0.8);
         group.add(dustBlue);
         group.add(dustGold);
 
