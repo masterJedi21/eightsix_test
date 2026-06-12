@@ -420,12 +420,29 @@
 
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-        camera.position.z = 8;
+        camera.position.z = 7.5;
 
         var group = new THREE.Group();
+        group.position.y = 0.15;
         scene.add(group);
 
-        // Soft round glow sprite shared by flashes, tracers and drone cores
+        // Wireframe shield + golden core — pushed deep and dimmed so it
+        // reads as ambient texture and never competes with the headline
+        var shieldGroup = new THREE.Group();
+        shieldGroup.position.set(0, -1.1, -3.2);
+        var shield = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(2.25, 1),
+            new THREE.MeshBasicMaterial({ color: 0x4f6fc4, wireframe: true, transparent: true, opacity: 0.13 })
+        );
+        var core = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(1.15, 1),
+            new THREE.MeshBasicMaterial({ color: 0xf4c430, wireframe: true, transparent: true, opacity: 0.06 })
+        );
+        shieldGroup.add(shield);
+        shieldGroup.add(core);
+        group.add(shieldGroup);
+
+        // Soft round glow sprite so points don't render as hard squares
         var sprite = (function () {
             var c = document.createElement('canvas');
             c.width = c.height = 64;
@@ -438,198 +455,31 @@
             g.fillRect(0, 0, 64, 64);
             return new THREE.CanvasTexture(c);
         })();
-        function glowSprite(hex, scale, opacity) {
-            var m = new THREE.Sprite(new THREE.SpriteMaterial({
-                map: sprite, color: hex, transparent: true, opacity: opacity,
-                blending: THREE.AdditiveBlending, depthWrite: false
+
+        function makePoints(count, color, size, rMin, rMax, opacity) {
+            var arr = new Float32Array(count * 3);
+            for (var i = 0; i < count; i++) {
+                var r = rMin + Math.random() * (rMax - rMin);
+                var theta = Math.random() * Math.PI * 2;
+                var phi = Math.acos(2 * Math.random() - 1);
+                arr[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+                arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) * 0.7;
+                arr[i * 3 + 2] = r * Math.cos(phi);
+            }
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
+            return new THREE.Points(geo, new THREE.PointsMaterial({
+                color: color, size: size, transparent: true, opacity: opacity,
+                sizeAttenuation: true, depthWrite: false,
+                map: sprite, blending: THREE.AdditiveBlending
             }));
-            m.scale.set(scale, scale, 1);
-            return m;
         }
+        var dustBlue = makePoints(620, 0x7d98e0, 0.06, 3.3, 6.4, 0.65);
+        var dustGold = makePoints(70, 0xf4c430, 0.09, 3.4, 6.0, 0.8);
+        group.add(dustBlue);
+        group.add(dustGold);
 
-        /* ══ Hex energy shield — the barrier, tilted low behind the copy ══ */
-        var shieldG = new THREE.Group();
-        shieldG.position.set(0, -2.5, 0.4);
-        shieldG.rotation.x = -0.52;
-        group.add(shieldG);
-
-        var HEX = 0.27;                      // grid spacing radius
-        var tilePos = [];
-        (function () {
-            for (var q = -9; q <= 9; q++) {
-                for (var r = -7; r <= 7; r++) {
-                    var x = 1.5 * HEX * q;
-                    var y = Math.sqrt(3) * HEX * (r + q / 2);
-                    if ((x * x) / (4.1 * 4.1) + (y * y) / (1.9 * 1.9) > 1) continue; // elliptical cut
-                    var z = 0.55 - (x * x / 16 + y * y / 7); // gentle bulge toward camera
-                    tilePos.push(new THREE.Vector3(x, y, z));
-                }
-            }
-        })();
-        var tileCount = tilePos.length;
-        var hexGeo = new THREE.CircleGeometry(HEX * 0.88, 6);
-        var hexMat = new THREE.MeshBasicMaterial({
-            color: 0xffffff, transparent: true, opacity: 0.34,
-            side: THREE.DoubleSide, depthWrite: false
-        });
-        var tiles = new THREE.InstancedMesh(hexGeo, hexMat, tileCount);
-        var dummy = new THREE.Object3D();
-        var baseCol = [];
-        var pulse = new Float32Array(tileCount);     // blue ripple energy
-        var threatPulse = new Float32Array(tileCount); // red impact energy
-        var tmpCol = new THREE.Color();
-        for (var ti = 0; ti < tileCount; ti++) {
-            dummy.position.copy(tilePos[ti]);
-            dummy.updateMatrix();
-            tiles.setMatrixAt(ti, dummy.matrix);
-            var shade = 0.75 + Math.random() * 0.5;
-            baseCol.push(new THREE.Color(0x21407f).multiplyScalar(shade));
-            tiles.setColorAt(ti, baseCol[ti]);
-        }
-        shieldG.add(tiles);
-        // neighbor map for impact ripples
-        var neighbors = [];
-        for (var a = 0; a < tileCount; a++) {
-            neighbors.push([]);
-            for (var b = 0; b < tileCount; b++) {
-                if (a !== b && tilePos[a].distanceTo(tilePos[b]) < HEX * 2.1) neighbors[a].push(b);
-            }
-        }
-
-        /* ══ HUD targeting rings beneath the shield ══ */
-        function ring(rIn, rOut, hex, opacity, thetaStart, thetaLen) {
-            return new THREE.Mesh(
-                new THREE.RingGeometry(rIn, rOut, 64, 1, thetaStart || 0, thetaLen || Math.PI * 2),
-                new THREE.MeshBasicMaterial({
-                    color: hex, transparent: true, opacity: opacity,
-                    side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false
-                })
-            );
-        }
-        var hud = new THREE.Group();
-        hud.position.set(0, -2.55, 0.1);
-        hud.rotation.x = -0.52;
-        group.add(hud);
-        hud.add(ring(2.55, 2.585, 0x4f6fc4, 0.22));
-        hud.add(ring(3.05, 3.07, 0x4f6fc4, 0.13));
-        var arcs = new THREE.Group();
-        for (var ai = 0; ai < 3; ai++) {
-            arcs.add(ring(2.78, 2.84, 0xf4c430, 0.3, ai * Math.PI * 2 / 3, Math.PI / 5));
-        }
-        hud.add(arcs);
-
-        /* ══ Funnel drones — autonomous sentries on patrol orbits ══ */
-        var funnelGeo = new THREE.OctahedronGeometry(0.16, 0);
-        funnelGeo.scale(0.6, 2.2, 0.6); // elongated kite, funnel-like
-        var funnels = [];
-        for (var fi = 0; fi < 6; fi++) {
-            var f = new THREE.Group();
-            var body = new THREE.Mesh(funnelGeo, new THREE.MeshBasicMaterial({
-                color: 0xaebfe8, wireframe: true, transparent: true, opacity: 0.55
-            }));
-            var eye = glowSprite(0xf4c430, 0.22, 0.65);
-            f.add(body);
-            f.add(eye);
-            f.userData = {
-                r: 3.4 + (fi % 3) * 0.85,
-                speed: (0.22 + (fi % 2) * 0.07) * (fi % 2 ? 1 : -1),
-                phase: fi * Math.PI / 3,
-                yAmp: 0.5 + (fi % 3) * 0.3,
-                yOff: -0.9 + (fi % 3) * 0.55,
-                eye: eye,
-                flash: 0
-            };
-            group.add(f);
-            funnels.push(f);
-        }
-
-        /* ══ Threat tracers + intercept beams (pooled) ══ */
-        function makeLine(hex, opacity) {
-            var g = new THREE.BufferGeometry();
-            g.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(6), 3));
-            var l = new THREE.Line(g, new THREE.LineBasicMaterial({
-                color: hex, transparent: true, opacity: opacity,
-                blending: THREE.AdditiveBlending, depthWrite: false
-            }));
-            l.visible = false;
-            l.frustumCulled = false;
-            return l;
-        }
-        function setLine(l, a, b) {
-            var p = l.geometry.attributes.position;
-            p.setXYZ(0, a.x, a.y, a.z);
-            p.setXYZ(1, b.x, b.y, b.z);
-            p.needsUpdate = true;
-        }
-        var threats = [];
-        for (var thi = 0; thi < 3; thi++) {
-            var line = makeLine(0xd62828, 0.85);
-            var head = glowSprite(0xd62828, 0.3, 0.9);
-            head.visible = false;
-            group.add(line);
-            group.add(head);
-            threats.push({ line: line, head: head, active: false, from: new THREE.Vector3(), to: new THREE.Vector3(), t: 0, tile: 0 });
-        }
-        var beams = [];
-        for (var bi = 0; bi < 3; bi++) {
-            var bl = makeLine(0xf4c430, 0.9);
-            group.add(bl);
-            beams.push({ line: bl, life: 0 });
-        }
-        var flashes = [];
-        for (var fl = 0; fl < 3; fl++) {
-            var fs = glowSprite(0xf4c430, 0.6, 0.9);
-            fs.visible = false;
-            group.add(fs);
-            flashes.push({ s: fs, life: 0 });
-        }
-
-        var spawnTimer = 1.6; // first attack arrives shortly after entrance
-        var tmpV = new THREE.Vector3();
-        function spawnThreat() {
-            for (var i = 0; i < threats.length; i++) {
-                if (threats[i].active) continue;
-                var th = threats[i];
-                th.tile = Math.floor(Math.random() * tileCount);
-                th.to.copy(tilePos[th.tile]);
-                shieldG.localToWorld(th.to);
-                group.worldToLocal(th.to);
-                var side = Math.random() < 0.5 ? -1 : 1;
-                th.from.set(side * (5 + Math.random() * 4), 2.5 + Math.random() * 3.5, -3 + Math.random() * 3);
-                th.t = 0;
-                th.active = true;
-                th.line.visible = true;
-                th.head.visible = true;
-                return;
-            }
-        }
-        function impact(th) {
-            threatPulse[th.tile] = 1;
-            neighbors[th.tile].forEach(function (n) { pulse[n] = Math.max(pulse[n], 0.8); });
-            // nearest funnel returns fire
-            var best = null, bestD = 1e9;
-            funnels.forEach(function (f) {
-                var d = f.position.distanceToSquared(th.to);
-                if (d < bestD) { bestD = d; best = f; }
-            });
-            for (var i = 0; i < beams.length; i++) {
-                if (beams[i].life > 0) continue;
-                beams[i].life = 1;
-                setLine(beams[i].line, best.position, th.to);
-                beams[i].line.visible = true;
-                break;
-            }
-            for (var j = 0; j < flashes.length; j++) {
-                if (flashes[j].life > 0) continue;
-                flashes[j].life = 1;
-                flashes[j].s.position.copy(th.to);
-                flashes[j].s.visible = true;
-                break;
-            }
-            if (best) best.userData.flash = 1;
-        }
-
-        /* ══ Pointer parallax + scroll-driven motion ══ */
+        // Pointer parallax + scroll-driven motion
         var tx = 0, ty = 0, mx = 0, my = 0, prog = 0;
         window.addEventListener('pointermove', function (e) {
             tx = e.clientX / window.innerWidth - 0.5;
@@ -654,106 +504,24 @@
             entries.forEach(function (entry) { running = entry.isIntersecting; });
         }, { threshold: 0 }).observe(wrap);
         document.addEventListener('visibilitychange', function () {
-            running = !document.hidden;
+            if (document.hidden) running = false;
+            else running = true;
         });
 
-        var lastT = 0;
-        var idleTimer = 0;
-        var blue = new THREE.Color(0x6d8bdd);
-        var red = new THREE.Color(0xd66a4a);
         function loop(t) {
             requestAnimationFrame(loop);
-            if (!running) { lastT = t; return; }
-            var dt = Math.min((t - lastT) / 1000 || 0.016, 0.05);
-            lastT = t;
-
+            if (!running) return;
             mx += (tx - mx) * 0.045;
             my += (ty - my) * 0.045;
-            group.rotation.y = mx * 0.22;
-            group.rotation.x = my * 0.12 + prog * 0.3;
-            group.position.y = -prog * 1.4;
-            camera.position.z = 8 + prog * 1.6;
+            group.rotation.y = t * 0.00006 + mx * 0.55 + prog * 1.1;
+            group.rotation.x = my * 0.35 + prog * 0.45;
+            group.position.y = 0.15 - prog * 1.3;
+            shield.rotation.z = t * 0.00004;
+            core.rotation.y = -t * 0.00012;
+            dustBlue.rotation.y = -t * 0.000028;
+            dustGold.rotation.y = t * 0.00004;
+            camera.position.z = 7.5 + prog * 1.7;
             canvas.style.opacity = String(1 - prog * 0.85);
-
-            // shield breathes, HUD rotates
-            shieldG.rotation.z = Math.sin(t * 0.00012) * 0.04;
-            hud.rotation.z = t * 0.00008;
-            arcs.rotation.z = -t * 0.0003;
-
-            // funnels patrol
-            funnels.forEach(function (f) {
-                var u = f.userData;
-                var ang = u.phase + t * 0.001 * u.speed;
-                f.position.set(
-                    Math.cos(ang) * u.r,
-                    u.yOff + Math.sin(t * 0.0006 + u.phase * 3) * u.yAmp,
-                    -1.2 + Math.sin(ang) * 1.6
-                );
-                f.rotation.z = Math.cos(ang) * (u.speed > 0 ? -0.5 : 0.5);
-                f.rotation.x = 0.25;
-                u.flash = Math.max(0, u.flash - dt * 2.5);
-                u.eye.material.opacity = 0.5 + u.flash * 0.5;
-                var es = 0.22 + u.flash * 0.3;
-                u.eye.scale.set(es, es, 1);
-            });
-
-            // threats fly in
-            spawnTimer -= dt;
-            if (spawnTimer <= 0) {
-                spawnThreat();
-                spawnTimer = 2.4 + Math.random() * 2.2;
-            }
-            threats.forEach(function (th) {
-                if (!th.active) return;
-                th.t += dt * 0.55;
-                if (th.t >= 1) {
-                    th.active = false;
-                    th.line.visible = false;
-                    th.head.visible = false;
-                    impact(th);
-                    return;
-                }
-                tmpV.lerpVectors(th.from, th.to, th.t);
-                th.head.position.copy(tmpV);
-                var tail = tmpV.clone().addScaledVector(th.to.clone().sub(th.from).normalize(), -0.8);
-                setLine(th.line, tail, tmpV);
-                th.line.material.opacity = 0.3 + th.t * 0.55;
-            });
-
-            // intercept beams + impact flashes decay
-            beams.forEach(function (b) {
-                if (b.life <= 0) return;
-                b.life -= dt * 4.5;
-                b.line.material.opacity = Math.max(0, b.life) * 0.9;
-                if (b.life <= 0) b.line.visible = false;
-            });
-            flashes.forEach(function (f) {
-                if (f.life <= 0) return;
-                f.life -= dt * 3;
-                var sc = 0.5 + (1 - f.life) * 1.1;
-                f.s.scale.set(sc, sc, 1);
-                f.s.material.opacity = Math.max(0, f.life) * 0.9;
-                if (f.life <= 0) f.s.visible = false;
-            });
-
-            // idle shimmer keeps the surface alive between attacks
-            idleTimer -= dt;
-            if (idleTimer <= 0) {
-                pulse[Math.floor(Math.random() * tileCount)] = 0.45;
-                idleTimer = 0.5 + Math.random() * 0.7;
-            }
-
-            // recolor tiles from pulse energies
-            for (var i = 0; i < tileCount; i++) {
-                pulse[i] *= Math.exp(-dt * 2.2);
-                threatPulse[i] *= Math.exp(-dt * 2.8);
-                tmpCol.copy(baseCol[i]);
-                if (pulse[i] > 0.01) tmpCol.lerp(blue, Math.min(pulse[i], 1));
-                if (threatPulse[i] > 0.01) tmpCol.lerp(red, Math.min(threatPulse[i], 1));
-                tiles.setColorAt(i, tmpCol);
-            }
-            tiles.instanceColor.needsUpdate = true;
-
             renderer.render(scene, camera);
         }
         requestAnimationFrame(loop);
