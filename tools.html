@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Free Security Tools | Eight Six IT Engineering</title>
+<meta name="description" content="Free browser-based security tools: password strength checker, password generator, email breach checker, phishing URL analyzer, and a HIPAA readiness quiz."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -53,6 +54,7 @@
     .quiz-option.selected-yes { border-color:#22c55e; background:rgba(34,197,94,0.1); }
     .quiz-option.selected-no { border-color:#ef4444; background:rgba(239,68,68,0.1); }
 </style>
+<link href="site.css" rel="stylesheet"/>
 </head>
 <body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
 
@@ -63,15 +65,15 @@
             <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain h-[50px]" src="logo.svg"/></a>
         </div>
         <nav class="hidden items-center gap-8 lg:flex">
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="services.html">Services</a>
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="about.html">About</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="services.html">Services</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="about.html">About</a>
             <a class="text-sm font-medium text-primary border-b border-primary pb-0.5" href="tools.html">Free Tools</a>
         </nav>
         <div class="flex items-center gap-4">
             <a href="https://books.zohosecure.com/portal/eightsixitengineering" target="_blank" rel="noopener" class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</a>
-            <a href="assessment.html" class="hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Get Assessment</a>
+            <a href="assessment.html" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Get Assessment</a>
         </div>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
             <span class="material-symbols-outlined" id="menu-icon">menu</span>
@@ -101,7 +103,7 @@
         <div class="armor-surface absolute inset-0 opacity-50"></div>
         <div class="armor-markings absolute inset-0"></div>
     </div>
-    <div class="mx-auto max-w-7xl px-6 relative z-10 text-center">
+    <div class="mx-auto max-w-7xl px-6 relative z-10 text-center hero-stagger">
         <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
             <span class="material-symbols-outlined text-sm">construction</span>
             Free Security Tools
@@ -252,7 +254,7 @@
                 <h2 class="text-3xl font-bold md:text-4xl">Want a Real Security Assessment?</h2>
                 <p class="mt-6 text-lg opacity-90 max-w-xl mx-auto">These tools give you a snapshot. Our engineers give you a full picture — and a plan to fix it.</p>
                 <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
-                    <a href="assessment.html" class="rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">Book Your Free Assessment</a>
+                    <a href="assessment.html" class="e86-btn-shine rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">Book Your Free Assessment</a>
                     <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
                         <span class="material-symbols-outlined">call</span>
                         (787) 714-9556
@@ -294,25 +296,13 @@
             </div>
         </div>
         <div class="mt-16 border-t border-white/5 pt-8 text-center text-xs">
-            <p>&copy; 2024 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
+            <p>&copy; 2026 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
         </div>
     </div>
 </footer>
 
 <script>
 (function () {
-
-    /* ── Hamburger ── */
-    var btn = document.getElementById('mobile-menu-btn');
-    var menu = document.getElementById('mobile-menu');
-    var icon = document.getElementById('menu-icon');
-    if (btn && menu && icon) {
-        btn.addEventListener('click', function () {
-            var isOpen = !menu.classList.contains('hidden');
-            menu.classList.toggle('hidden');
-            icon.textContent = isOpen ? 'menu' : 'close';
-        });
-    }
 
     /* ══════════════════════════════════════
        TOOL 1 — Password Strength Checker
@@ -639,5 +629,6 @@
 
 })();
 </script>
+<script src="site.js" defer></script>
 </body>
 </html>

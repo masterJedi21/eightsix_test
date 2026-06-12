@@ -1,0 +1,368 @@
+/* ════════════════════════════════════════════════════════════════
+   Eight Six IT Engineering — shared motion & interaction styles
+   Additive only: nothing here overrides existing page styles.
+   All animations use transform/opacity and respect reduced motion.
+   ════════════════════════════════════════════════════════════════ */
+
+/* Smooth anchor scrolling */
+@media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+}
+
+/* ── Scroll reveal system ──
+   Elements are hidden only when JS adds .e86-anim to <html>,
+   so content is always visible without JavaScript. */
+html.e86-anim [data-reveal] {
+    opacity: 0;
+    transition:
+        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Hint the compositor only while hidden — keeping will-change on every
+   revealed element permanently exhausts the layer budget on weak GPUs. */
+html.e86-anim [data-reveal]:not(.is-in) {
+    will-change: opacity, transform;
+}
+html.e86-anim [data-reveal=""],
+html.e86-anim [data-reveal="up"]    { transform: translateY(32px); }
+html.e86-anim [data-reveal="down"]  { transform: translateY(-32px); }
+html.e86-anim [data-reveal="left"]  { transform: translateX(-44px); }
+html.e86-anim [data-reveal="right"] { transform: translateX(44px); }
+html.e86-anim [data-reveal="scale"] { transform: scale(0.92); }
+html.e86-anim [data-reveal="blur"]  { transform: translateY(20px); filter: blur(8px); }
+html.e86-anim [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+/* ── Hero entrance (plays on load, no scroll needed) ── */
+html.e86-anim .hero-stagger > * {
+    opacity: 0;
+    transform: translateY(26px);
+    animation: e86-rise 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+html.e86-anim .hero-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+html.e86-anim .hero-stagger > *:nth-child(2) { animation-delay: 0.15s; }
+html.e86-anim .hero-stagger > *:nth-child(3) { animation-delay: 0.28s; }
+html.e86-anim .hero-stagger > *:nth-child(4) { animation-delay: 0.42s; }
+html.e86-anim .hero-stagger > *:nth-child(5) { animation-delay: 0.55s; }
+html.e86-anim .hero-stagger > *:nth-child(6) { animation-delay: 0.68s; }
+html.e86-anim .hero-stagger > *:nth-child(7) { animation-delay: 0.80s; }
+html.e86-anim .hero-stagger > *:nth-child(8) { animation-delay: 0.92s; }
+@keyframes e86-rise {
+    to { opacity: 1; transform: none; }
+}
+
+/* ── Scroll progress bar (injected by JS) ── */
+.e86-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background: linear-gradient(90deg, #1f3a89, #5b79c9 60%, #F4C430);
+    z-index: 90;
+    pointer-events: none;
+}
+
+/* ── Marquee (vendor / trust logos) ── */
+.e86-marquee {
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.e86-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: e86-marquee 32s linear infinite;
+}
+.e86-marquee:hover .e86-marquee-track { animation-play-state: paused; }
+@keyframes e86-marquee {
+    to { transform: translateX(-50%); }
+}
+
+/* ── Drifting armor panels (brings the existing texture to life) ── */
+@media (prefers-reduced-motion: no-preference) {
+    .armor-surface, .armor-markings {
+        animation: e86-armor-drift 120s linear infinite;
+    }
+}
+@keyframes e86-armor-drift {
+    to { background-position: 1600px 900px; }
+}
+
+/* ── Floating orbs ── */
+.e86-orb {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+    will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .e86-float       { animation: e86-float 9s ease-in-out infinite; }
+    .e86-float-slow  { animation: e86-float 14s ease-in-out infinite; }
+    .e86-float-rev   { animation: e86-float-rev 11s ease-in-out infinite; }
+}
+@keyframes e86-float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, -26px, 0); }
+}
+@keyframes e86-float-rev {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, 22px, 0); }
+}
+
+/* ── Shimmering gradient text ── */
+.e86-shimmer {
+    background: linear-gradient(110deg, #6d8bdd 20%, #aebfe8 38%, #F4C430 50%, #aebfe8 62%, #6d8bdd 80%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .e86-shimmer { animation: e86-shimmer 6s ease-in-out infinite; }
+}
+@keyframes e86-shimmer {
+    0%, 100% { background-position: 110% 0; }
+    50%      { background-position: -10% 0; }
+}
+
+/* ── Button shine sweep ── */
+.e86-btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+.e86-btn-shine::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -80%;
+    width: 50%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+.e86-btn-shine:hover::after { left: 130%; }
+
+/* ── Glow cards (cursor-tracking radial highlight + lift) ── */
+.e86-glow-card {
+    position: relative;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.45s ease;
+}
+.e86-glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(91, 121, 201, 0.16), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+.e86-glow-card:hover::before { opacity: 1; }
+.e86-glow-card:hover {
+    transform: translateY(-6px);
+}
+
+/* ── 3D tilt cards (JS sets the transform inline only while hovered,
+      so idle cards don't hold a permanent 3D compositing layer) ── */
+.e86-tilt {
+    transition: transform 0.25s ease-out;
+}
+
+/* ── Animated progress bars in dashboard panels ── */
+html.e86-anim .e86-bar {
+    width: 0%;
+    transition: width 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+}
+
+/* ── SOC panel scanning line ── */
+.e86-scanline {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.e86-scanline::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 60px;
+    top: -60px;
+    background: linear-gradient(180deg, transparent, rgba(91, 121, 201, 0.12), transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+    .e86-scanline::after { animation: e86-scan 5s ease-in-out infinite; }
+}
+@keyframes e86-scan {
+    0%   { transform: translateY(0); }
+    60%, 100% { transform: translateY(640px); }
+}
+
+/* ── Pulsing status glow ── */
+@media (prefers-reduced-motion: no-preference) {
+    .e86-pulse-glow { animation: e86-pulse-glow 2.8s ease-in-out infinite; }
+}
+@keyframes e86-pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 rgba(31, 58, 137, 0); }
+    50%      { box-shadow: 0 0 26px rgba(31, 58, 137, 0.55); }
+}
+
+/* ── Timeline connector draw ── */
+html.e86-anim .e86-line-draw {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+html.e86-anim .e86-line-draw.is-in { transform: scaleX(1); }
+html.e86-anim .e86-line-draw-v {
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+html.e86-anim .e86-line-draw-v.is-in { transform: scaleY(1); }
+
+/* ── Scroll-down cue ── */
+.e86-scroll-cue {
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    position: relative;
+}
+.e86-scroll-cue::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    width: 4px;
+    height: 8px;
+    margin-left: -2px;
+    border-radius: 2px;
+    background: #F4C430;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .e86-scroll-cue::after { animation: e86-cue 2s ease-in-out infinite; }
+}
+@keyframes e86-cue {
+    0%   { transform: translateY(0); opacity: 1; }
+    70%  { transform: translateY(14px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+}
+
+/* ── FAQ accordion ── */
+.e86-faq-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.e86-faq-a > div { overflow: hidden; }
+.e86-faq-item.open .e86-faq-a { grid-template-rows: 1fr; }
+.e86-faq-icon { transition: transform 0.35s ease; }
+.e86-faq-item.open .e86-faq-icon { transform: rotate(45deg); }
+.e86-faq-item { transition: border-color 0.3s ease, background-color 0.3s ease; }
+.e86-faq-item.open { border-color: rgba(31, 58, 137, 0.5); background: rgba(31, 58, 137, 0.07); }
+
+/* ── Back-to-top button (injected by JS) ── */
+.e86-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    color: #fff;
+    background: rgba(31, 58, 137, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.2s ease;
+}
+.e86-top.show {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+.e86-top:hover { background: rgba(31, 58, 137, 1); }
+
+/* ── Header scrolled state ── */
+header.e86-scrolled {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Animated nav underline ── */
+.e86-nav-link {
+    position: relative;
+}
+.e86-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s ease;
+}
+.e86-nav-link:hover::after { transform: scaleX(1); }
+
+/* ── Mobile menu slide-down ── */
+@media (prefers-reduced-motion: no-preference) {
+    #mobile-menu:not(.hidden) { animation: e86-menu-in 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+}
+@keyframes e86-menu-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ── Image zoom inside cards ── */
+.e86-img-zoom img {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+.e86-img-zoom:hover img { transform: scale(1.07); opacity: 0.8; }
+
+/* ── Hero particle canvas ── */
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ── Reduced motion: kill everything gracefully ── */
+@media (prefers-reduced-motion: reduce) {
+    html.e86-anim [data-reveal],
+    html.e86-anim .hero-stagger > *,
+    html.e86-anim .e86-bar,
+    html.e86-anim .e86-line-draw,
+    html.e86-anim .e86-line-draw-v {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+    .e86-marquee-track { animation: none; }
+    .e86-glow-card:hover { transform: none; }
+    .e86-tilt { transform: none; }
+}

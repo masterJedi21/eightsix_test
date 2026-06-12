@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>About Us | Eight Six IT Engineering</title>
+<meta name="description" content="Eight Six IT Engineering — Puerto Rico's healthcare IT specialists since 2010. 1,000+ endpoints managed, 99.9% uptime SLA, and engineers your team knows by name."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -74,6 +75,7 @@
         transform: translateX(-50%);
     }
 </style>
+<link href="site.css" rel="stylesheet"/>
 </head>
 <body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
 
@@ -84,21 +86,22 @@
             <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain h-[50px]" src="logo.svg"/></a>
         </div>
         <nav class="hidden items-center gap-8 lg:flex">
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="services.html">Services</a>
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="services.html">Services</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="who-we-serve.html">Who We Serve</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="cybersecurity.html">Cybersecurity</a>
             <a class="text-sm font-medium text-primary border-b border-primary pb-0.5" href="about.html">About</a>
-            <a class="text-sm font-medium transition-colors hover:text-primary" href="tools.html">Free Tools</a>
+            <a class="e86-nav-link text-sm font-medium transition-colors hover:text-primary" href="tools.html">Free Tools</a>
 
         </nav>
         <div class="flex items-center gap-4">
             <a href="https://books.zohosecure.com/portal/eightsixitengineering" target="_blank" rel="noopener" class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</a>
-            <a href="assessment.html" class="hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">
+            <a href="assessment.html" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">
                 Get Assessment
             </a>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
             <span class="material-symbols-outlined" id="menu-icon">menu</span>
         </button>
+        </div>
     </div>
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 bg-background-dark/95 backdrop-blur-md">
@@ -131,7 +134,7 @@
                 <span class="material-symbols-outlined text-xs" style="font-size:14px">chevron_right</span>
                 <span class="text-slate-300">About</span>
             </div>
-            <div class="max-w-3xl">
+            <div class="max-w-3xl hero-stagger">
                 <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
                     <span class="relative flex h-2 w-2">
                         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
@@ -179,12 +182,12 @@
                         <p class="mt-2 text-sm text-slate-400">Over a decade of healthcare IT excellence in Puerto Rico.</p>
                     </div>
                     <div class="rounded-xl border border-primary/20 bg-primary/5 p-8 flex flex-col gap-2">
-                        <span class="text-4xl font-bold text-primary">1,000+</span>
+                        <span class="text-4xl font-bold text-primary"><span data-count="1000" data-count-suffix="+">1,000+</span></span>
                         <span class="text-xs uppercase tracking-widest text-slate-500">Endpoints Managed</span>
                         <p class="mt-2 text-sm text-slate-400">Across clinics, hospitals, and professional offices island-wide.</p>
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-8 flex flex-col gap-2">
-                        <span class="text-4xl font-bold text-white">99.9%</span>
+                        <span class="text-4xl font-bold text-white"><span data-count="99.9" data-count-decimals="1" data-count-suffix="%">99.9%</span></span>
                         <span class="text-xs uppercase tracking-widest text-slate-500">Uptime SLA</span>
                         <p class="mt-2 text-sm text-slate-400">Guaranteed availability for every managed client environment.</p>
                     </div>
@@ -402,7 +405,7 @@
                         Schedule a free, no-obligation IT risk assessment with one of our engineers.
                     </p>
                     <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
-                        <a href="assessment.html" class="rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">
+                        <a href="assessment.html" class="e86-btn-shine rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] ring-4 ring-white/10">
                             Book Your Free Assessment
                         </a>
                         <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
@@ -459,24 +462,11 @@
             </div>
         </div>
         <div class="mt-16 border-t border-white/5 pt-8 text-center text-xs">
-            <p>&copy; 2024 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
+            <p>&copy; 2026 Eight Six IT Engineering. All Rights Reserved. Designed for Excellence.</p>
         </div>
     </div>
 </footer>
 
-<script>
-    (function() {
-        var btn = document.getElementById('mobile-menu-btn');
-        var menu = document.getElementById('mobile-menu');
-        var icon = document.getElementById('menu-icon');
-        if (btn && menu && icon) {
-            btn.addEventListener('click', function() {
-                var isOpen = !menu.classList.contains('hidden');
-                menu.classList.toggle('hidden');
-                icon.textContent = isOpen ? 'menu' : 'close';
-            });
-        }
-    })();
-</script>
+<script src="site.js" defer></script>
 </body>
 </html>
