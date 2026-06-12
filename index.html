@@ -69,8 +69,19 @@
     }
 </style>
 <link href="site.css" rel="stylesheet"/>
+<script id="e86-bootstrap">(function(){try{var d=document.documentElement;if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('e86t')){sessionStorage.removeItem('e86t');d.classList.add('e86-curtain');}else if(!sessionStorage.getItem('e86v')){sessionStorage.setItem('e86v','1');d.classList.add('e86-loading');}}catch(e){}})();</script>
 </head>
 <body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
+<!-- Preloader / page-transition curtain (shown only via the head bootstrap) -->
+<div class="e86-loader" aria-hidden="true">
+    <div class="e86-loader-edge"></div>
+    <div class="e86-loader-inner">
+        <img alt="" class="e86-loader-logo" src="logo.svg"/>
+        <div class="e86-loader-bar"><div class="e86-loader-fill"></div></div>
+        <div class="e86-loader-pct">0%</div>
+    </div>
+</div>
+
 
 <!-- Header / Navigation -->
 <header class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md transition-shadow duration-300">
@@ -462,7 +473,7 @@
     </section>
 
     <!-- How We Work -->
-    <section class="py-24 bg-[#080d16] relative overflow-hidden">
+    <section data-pin="steps" class="py-24 bg-[#080d16] relative overflow-hidden">
         <div class="e86-orb e86-float -right-24 bottom-10 h-72 w-72 bg-primary/10 blur-[110px]" data-parallax="0.1" aria-hidden="true"></div>
         <div class="mx-auto max-w-7xl px-6">
             <div class="text-center mb-16">
@@ -479,29 +490,29 @@
                 <div class="e86-line-draw absolute left-0 right-0 top-7 hidden lg:block h-px bg-gradient-to-r from-primary/60 via-primary/40 to-accent-yellow/60" aria-hidden="true"></div>
                 <div class="grid gap-10 lg:grid-cols-4 lg:gap-6">
                     <!-- Step 1 -->
-                    <div data-reveal="up" class="relative">
-                        <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white text-lg font-bold shadow-[0_0_25px_rgba(31,58,137,0.5)]">1</div>
+                    <div data-reveal="up" class="e86-step relative">
+                        <div class="e86-step-node relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white text-lg font-bold shadow-[0_0_25px_rgba(31,58,137,0.5)]">1</div>
                         <p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Day 1</p>
                         <h3 class="text-lg font-bold text-white mb-2">Discovery Call</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">Free assessment to map your environment, identify risks, and confirm scope. An engineer, not a salesperson.</p>
                     </div>
                     <!-- Step 2 -->
-                    <div data-reveal="up" data-delay="150" class="relative">
-                        <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white text-lg font-bold shadow-[0_0_25px_rgba(31,58,137,0.5)]">2</div>
+                    <div data-reveal="up" data-delay="150" class="e86-step relative">
+                        <div class="e86-step-node relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white text-lg font-bold shadow-[0_0_25px_rgba(31,58,137,0.5)]">2</div>
                         <p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Week 1</p>
                         <h3 class="text-lg font-bold text-white mb-2">Proposal &amp; Sign-off</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">Plain-language service agreement with clear deliverables, SLAs, and flat monthly pricing.</p>
                     </div>
                     <!-- Step 3 -->
-                    <div data-reveal="up" data-delay="300" class="relative">
-                        <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white text-lg font-bold shadow-[0_0_25px_rgba(31,58,137,0.5)]">3</div>
+                    <div data-reveal="up" data-delay="300" class="e86-step relative">
+                        <div class="e86-step-node relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white text-lg font-bold shadow-[0_0_25px_rgba(31,58,137,0.5)]">3</div>
                         <p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Weeks 2–3</p>
                         <h3 class="text-lg font-bold text-white mb-2">Deployment</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">Agents deployed, monitoring configured, backups initiated, and the full security stack activated.</p>
                     </div>
                     <!-- Step 4 -->
-                    <div data-reveal="up" data-delay="450" class="relative">
-                        <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-yellow text-background-dark text-lg font-bold shadow-[0_0_25px_rgba(244,196,48,0.4)]">4</div>
+                    <div data-reveal="up" data-delay="450" class="e86-step relative">
+                        <div class="e86-step-node relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-yellow text-background-dark text-lg font-bold shadow-[0_0_25px_rgba(244,196,48,0.4)]">4</div>
                         <p class="text-xs font-bold uppercase tracking-widest text-accent-yellow mb-2">Week 4</p>
                         <h3 class="text-lg font-bold text-white mb-2">Fully Managed</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">24/7 monitoring live, your dedicated engineer introduced, first monthly report scheduled.</p>
@@ -739,6 +750,10 @@
     </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
 <script src="site.js" defer></script>
+<script src="experience.js" defer></script>
 </body>
 </html>

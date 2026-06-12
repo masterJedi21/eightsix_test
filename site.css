@@ -349,6 +349,122 @@ header.e86-scrolled {
     pointer-events: none;
 }
 
+/* ════════════════════════════════════════════════════════════════
+   Cinematic layer (experience.js — GSAP / Lenis / Three.js)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Lenis owns scrolling — native smooth behavior must not fight it */
+html.e86-lenis { scroll-behavior: auto; }
+
+/* ── Preloader / page-transition curtain ──
+   Shown pre-paint only when the inline <head> bootstrap adds
+   .e86-loading (first visit) or .e86-curtain (internal navigation).
+   A CSS failsafe hides it even if every script fails. */
+.e86-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #0B1220;
+}
+html.e86-loading .e86-loader,
+html.e86-curtain .e86-loader {
+    display: flex;
+    animation: e86-loader-failsafe 0.5s ease 3s forwards;
+}
+html.e86-curtain .e86-loader .e86-loader-inner { display: none; }
+.e86-loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+.e86-loader-logo { height: 52px; width: auto; }
+.e86-loader-bar {
+    width: 220px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.e86-loader-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #1f3a89, #F4C430);
+}
+.e86-loader-pct {
+    font-family: monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: #64748b;
+}
+.e86-loader-edge {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1f3a89, #F4C430);
+}
+@keyframes e86-loader-failsafe {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* ── Split-text word masks ── */
+.e86-word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+}
+.e86-word { display: inline-block; }
+
+/* ── Custom cursor (fine pointers only, decorative — native stays) ── */
+.e86-cursor-dot,
+.e86-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 400;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.e86-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: #F4C430;
+}
+.e86-cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid rgba(244, 196, 48, 0.65);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
+                background-color 0.25s ease, opacity 0.3s ease, margin 0.25s ease;
+}
+html.e86-cursor-active .e86-cursor-dot,
+html.e86-cursor-active .e86-cursor-ring { opacity: 1; }
+.e86-cursor-ring.is-link {
+    width: 54px;
+    height: 54px;
+    margin: -10px 0 0 -10px;
+    border-color: rgba(125, 152, 224, 0.9);
+    background: rgba(31, 58, 137, 0.14);
+}
+.e86-cursor-ring.is-down {
+    width: 24px;
+    height: 24px;
+    margin: 5px 0 0 5px;
+}
+
+/* ── GSAP-mode overrides: experience.js drives these itself ── */
+html.e86-gsap .e86-marquee-track { animation: none; }
+html.e86-gsap [data-parallax] { animation: none; }
+html.e86-gsap .e86-bar {
+    transition: width 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+}
+
 /* ── Reduced motion: kill everything gracefully ── */
 @media (prefers-reduced-motion: reduce) {
     html.e86-anim [data-reveal],
@@ -365,4 +481,6 @@ header.e86-scrolled {
     .e86-marquee-track { animation: none; }
     .e86-glow-card:hover { transform: none; }
     .e86-tilt { transform: none; }
+    .e86-loader { display: none !important; }
+    .e86-cursor-dot, .e86-cursor-ring { display: none !important; }
 }
