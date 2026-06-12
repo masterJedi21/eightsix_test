@@ -426,51 +426,21 @@
         group.position.y = 0.15;
         scene.add(group);
 
-        // RX-78-2-inspired head hologram — same treatment as the old sphere:
-        // pushed deep, dimmed, drawn as panel-edge lines so it reads as
-        // ambient texture and never competes with the headline
-        var head = new THREE.Group();
-        head.position.set(0, -1.85, -3.2);
-        head.scale.setScalar(1.4);
-        group.add(head);
-
-        var BLUE = 0x4f6fc4, GOLD = 0xf4c430, RED = 0xd62828;
-        function headPart(geo, hex, opacity, x, y, z, rx, ry, rz) {
-            var m = new THREE.LineSegments(
-                new THREE.EdgesGeometry(geo, 10), // hard edges only — clean blueprint lines
-                new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: opacity })
-            );
-            m.position.set(x, y, z);
-            if (rx) m.rotation.x = rx;
-            if (ry) m.rotation.y = ry;
-            if (rz) m.rotation.z = rz;
-            head.add(m);
-            return m;
-        }
-        function frustum(rTop, rBottom, h) { // square cross-section, flat face forward
-            var g = new THREE.CylinderGeometry(rTop, rBottom, h, 4, 1);
-            g.rotateY(Math.PI / 4);
-            return g;
-        }
-        // helmet crown + lower face block (diamond profile, widest at the cheeks)
-        headPart(frustum(0.52, 0.78, 0.85), BLUE, 0.17, 0, 0.42, 0);
-        headPart(frustum(0.78, 0.34, 0.80), BLUE, 0.17, 0, -0.40, 0);
-        // top crest ridge, front-to-back
-        headPart(new THREE.BoxGeometry(0.14, 0.15, 0.9), BLUE, 0.15, 0, 0.9, 0.04);
-        // visor band across the eyes
-        headPart(new THREE.BoxGeometry(0.95, 0.2, 0.14), BLUE, 0.2, 0, 0.02, 0.5);
-        // faceplate vent
-        headPart(new THREE.BoxGeometry(0.3, 0.16, 0.1), BLUE, 0.18, 0, -0.52, 0.42);
-        // chin guard (red)
-        headPart(frustum(0.16, 0.08, 0.22), RED, 0.24, 0, -0.76, 0.3);
-        // forehead sensor jewel (red)
-        headPart(new THREE.BoxGeometry(0.14, 0.12, 0.08), RED, 0.24, 0, 0.52, 0.5);
-        // side ducts (gold)
-        headPart(new THREE.BoxGeometry(0.16, 0.34, 0.34), GOLD, 0.24, -0.62, -0.02, 0);
-        headPart(new THREE.BoxGeometry(0.16, 0.34, 0.34), GOLD, 0.24, 0.62, -0.02, 0);
-        // the V-fin — swept up and back from the forehead (gold, brightest)
-        headPart(new THREE.BoxGeometry(0.9, 0.07, 0.05), GOLD, 0.3, -0.44, 0.68, 0.42, 0, 0.2, 0.46);
-        headPart(new THREE.BoxGeometry(0.9, 0.07, 0.05), GOLD, 0.3, 0.44, 0.68, 0.42, 0, -0.2, -0.46);
+        // Wireframe shield + golden core — pushed deep and dimmed so it
+        // reads as ambient texture and never competes with the headline
+        var shieldGroup = new THREE.Group();
+        shieldGroup.position.set(0, -1.1, -3.2);
+        var shield = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(2.25, 1),
+            new THREE.MeshBasicMaterial({ color: 0x4f6fc4, wireframe: true, transparent: true, opacity: 0.13 })
+        );
+        var core = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(1.15, 1),
+            new THREE.MeshBasicMaterial({ color: 0xf4c430, wireframe: true, transparent: true, opacity: 0.06 })
+        );
+        shieldGroup.add(shield);
+        shieldGroup.add(core);
+        group.add(shieldGroup);
 
         // Soft round glow sprite so points don't render as hard squares
         var sprite = (function () {
@@ -509,18 +479,6 @@
         group.add(dustBlue);
         group.add(dustGold);
 
-        // twin eyes — soft gold glow, pulsing slowly in the render loop
-        var eyeMat = new THREE.SpriteMaterial({
-            map: sprite, color: GOLD, transparent: true, opacity: 0.45,
-            blending: THREE.AdditiveBlending, depthWrite: false
-        });
-        [-0.22, 0.22].forEach(function (ex) {
-            var eye = new THREE.Sprite(eyeMat);
-            eye.position.set(ex, 0.02, 0.62);
-            eye.scale.set(0.16, 0.16, 1);
-            head.add(eye);
-        });
-
         // Pointer parallax + scroll-driven motion
         var tx = 0, ty = 0, mx = 0, my = 0, prog = 0;
         window.addEventListener('pointermove', function (e) {
@@ -558,11 +516,8 @@
             group.rotation.y = t * 0.00006 + mx * 0.55 + prog * 1.1;
             group.rotation.x = my * 0.35 + prog * 0.45;
             group.position.y = 0.15 - prog * 1.3;
-            // cancel the parent drift so the head mostly faces forward,
-            // with a slow scanning sweep and a gentle hologram float
-            head.rotation.y = -t * 0.00006 + Math.sin(t * 0.00035) * 0.28;
-            head.position.y = -1.85 + Math.sin(t * 0.0008) * 0.07;
-            eyeMat.opacity = 0.42 + Math.sin(t * 0.002) * 0.18;
+            shield.rotation.z = t * 0.00004;
+            core.rotation.y = -t * 0.00012;
             dustBlue.rotation.y = -t * 0.000028;
             dustGold.rotation.y = t * 0.00004;
             camera.position.z = 7.5 + prog * 1.7;
