@@ -296,7 +296,7 @@
             var y = window.scrollY;
             var vel = (y - lastY) / Math.max(dt, 0.001);
             lastY = y;
-            var speed = 4.2 + Math.min(Math.abs(vel) * 0.014, 26);
+            var speed = 2.1 + Math.min(Math.abs(vel) * 0.007, 13);
             marqueePos = wrapX(marqueePos - speed * dt);
             var skew = gsap.utils.clamp(-9, 9, vel * 0.004);
             tracks.forEach(function (t, i) {

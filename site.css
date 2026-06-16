@@ -78,7 +78,7 @@ html.e86-anim .hero-stagger > *:nth-child(8) { animation-delay: 0.92s; }
 .e86-marquee-track {
     display: flex;
     width: max-content;
-    animation: e86-marquee 32s linear infinite;
+    animation: e86-marquee 64s linear infinite;
 }
 .e86-marquee:hover .e86-marquee-track { animation-play-state: paused; }
 @keyframes e86-marquee {
